@@ -3,5 +3,3 @@
 packages:
   - "packages/*"
   - "projects/*"
-  - "micro-services/*"
-  - "scripts/*"

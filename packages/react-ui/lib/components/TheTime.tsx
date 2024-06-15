@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const TimeComponent = () => {
+function TheTime() {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
@@ -13,12 +13,7 @@ const TimeComponent = () => {
     };
   }, []);
 
-  return (
-    <div>
-      <h1>Current Time:</h1>
-      <p>{currentTime.toLocaleTimeString()}</p>
-    </div>
-  );
-};
+  return <p>{currentTime.toLocaleTimeString()}</p>;
+}
 
-export default TimeComponent;
+export default TheTime;
