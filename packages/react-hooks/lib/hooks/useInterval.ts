@@ -12,15 +12,25 @@
  * @example
  */
 
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 // import { useDispatch } from "react-redux";
-import { isNumber } from "@tikkhun/functions";
-export default function useInterval(
-  callback,
-  interval = 1000,
-  { immediate = false }
-) {
-  const intervalIdRef = useRef(null);
+import { isNumber } from "@tikkhun/web-utils";
+export interface UseIntervalOptions {
+  callback: (...args: any[]) => void;
+  interval: number;
+  immediate: boolean;
+}
+export const USE_INTERVAL_DEFAULT_OPTIONS: UseIntervalOptions = {
+  callback: () => {},
+  interval: 1000,
+  immediate: false,
+};
+export function useInterval(options: Partial<UseIntervalOptions>) {
+  const { callback, interval, immediate } = Object.assign(
+    USE_INTERVAL_DEFAULT_OPTIONS,
+    options
+  );
+  const intervalIdRef = useRef<number | null>(null);
   // 清除函数
   const clear = useCallback(() => {
     if (intervalIdRef.current) {
@@ -32,9 +42,6 @@ export default function useInterval(
     // 判断传入参数是否正确
     if (!isNumber(interval) || interval < 0) {
       // 开发模式下就报错
-      if(isDev){
-        console.error(`useInterval interval is not correct`, interval);
-      }
       return;
     }
     // 立即执行

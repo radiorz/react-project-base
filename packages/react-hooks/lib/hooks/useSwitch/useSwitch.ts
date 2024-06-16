@@ -16,7 +16,7 @@
  */
 import { useState } from "react";
 
-export default function useSwitch(cases = new Set(), defaultCase) {
+export function useSwitch(cases = new Set(), defaultCase: any) {
   const caseArray = Array.from(cases);
   const [currentCase, setCurrentCase] = useState(defaultCase || caseArray[0]);
 
@@ -37,7 +37,7 @@ export default function useSwitch(cases = new Set(), defaultCase) {
     setCurrentCase(caseArray[prevIndex]);
   }
 
-  function setCase(caseValue) {
+  function setCase(caseValue: any) {
     if (cases.has(caseValue)) {
       setCurrentCase(caseValue);
     }

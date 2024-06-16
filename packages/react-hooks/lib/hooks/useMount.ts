@@ -12,10 +12,10 @@
  * @example
  */
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 // import { useDispatch } from "react-redux";
 
-export default function useMount(fn) {
+export function useMount(fn: () => void) {
   useEffect(() => {
     fn();
   }, []);

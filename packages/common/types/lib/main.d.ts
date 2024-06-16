@@ -1,3 +1,2 @@
-declare function hello(msg?: string): string;
-export { hello };
+export * from "./hello";
 //# sourceMappingURL=main.d.ts.map

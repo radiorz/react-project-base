@@ -11,7 +11,7 @@
  * @done
  * @example
  */
-import { useSwitch } from "../index";
+import { useSwitch } from "../useSwitch";
 function SwitchCase() {
   const cases = new Set([1, 2, 3]);
   const { currentCase, setCase, setNextCase, setPrevCase, setRandomCase } =

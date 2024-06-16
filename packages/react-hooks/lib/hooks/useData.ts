@@ -1,9 +1,17 @@
-
 /**
  * 简单的
  * @deprecated Use {@link ahook useRequest} instead.
  */
-export function useData({ url, method = "GET" }) {
+import { useState, useEffect } from "react";
+export interface Options {
+  url: string;
+}
+export const DEFAULT_OPTIONS = {
+  url: "",
+  method: "GET",
+};
+export function useData(options?: Partial<Options>) {
+  const opts = Object.assign(DEFAULT_OPTIONS, options);
   const [data, setData] = useState(null);
   useEffect(() => {
     // 即使成功也忽略
@@ -12,8 +20,8 @@ export function useData({ url, method = "GET" }) {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    fetch(url, {
-      method,
+    fetch(opts.url, {
+      method: opts.method,
       signal: signal, // <------ This is our AbortSignal
     })
       .then((response) => response.json())
@@ -27,6 +35,6 @@ export function useData({ url, method = "GET" }) {
       controller.abort();
       ignore = true;
     };
-  }, [url]);
+  }, [opts]);
   return data;
 }
