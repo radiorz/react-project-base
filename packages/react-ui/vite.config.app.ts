@@ -3,19 +3,10 @@ import react from "@vitejs/plugin-react-swc";
 
 import packageJson from "./package.json";
 import { fileURLToPath, URL } from "node:url";
-import externalGlobals from "rollup-plugin-external-globals";
 
 const name = packageJson.name.split("/")[1];
 export default defineConfig({
-  plugins: [
-    react(),
-    externalGlobals({
-      react: "React",
-      "react-dom": "ReactDOM",
-      "react-router": "ReactRouter",
-      "react-router-dom": "ReactRouterDOM",
-    }),
-  ],
+  plugins: [react()],
   build: {
     lib: {
       entry: "./lib/index.ts",
@@ -23,12 +14,7 @@ export default defineConfig({
       fileName: name,
     },
     rollupOptions: {
-      external: [
-        "react",
-        "react-dom",
-        "react-router",
-        "react-router-dom",
-      ],
+      external: ["react", "react-dom", "react-router", "react-router-dom"],
     },
   },
   resolve: {
