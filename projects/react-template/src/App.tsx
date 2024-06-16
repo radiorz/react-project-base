@@ -11,9 +11,14 @@
  * @done
  * @example
  */
+
 import { TheTime } from "@tikkhun/react-ui";
 function App() {
-  return <TheTime />;
+  return (
+    <div>
+      <TheTime></TheTime>
+    </div>
+  );
 }
 
 export default App;
