@@ -21,7 +21,7 @@ export interface UseTimeOptions {
 export const defaultUseTimeOptions: UseTimeOptions = {
   interval: 500,
 };
-export function useTime(options: UseTimeOptions) {
+export function useTime(options?: Partial<UseTimeOptions>) {
   const { interval } = Object.assign(defaultUseTimeOptions, options);
   const [currentTime, setCurrentTime] = useState(new Date());
   useInterval({

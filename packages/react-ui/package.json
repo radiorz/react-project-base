@@ -22,7 +22,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rollup-plugin-external-globals": "^0.10.0"
+    "@tikkhun/react-hooks": "workspace:^"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

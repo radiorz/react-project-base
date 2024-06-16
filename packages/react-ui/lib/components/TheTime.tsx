@@ -1,17 +1,7 @@
-import { useState, useEffect } from "react";
+import { useTime } from "@tikkhun/react-hooks";
 
 function TheTime() {
-  const [currentTime, setCurrentTime] = useState(new Date());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 500);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  const { currentTime } = useTime();
 
   return <p>{currentTime.toLocaleTimeString()}</p>;
 }

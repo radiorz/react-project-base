@@ -22,8 +22,7 @@
   "dependencies": {
     "@tikkhun/web-utils": "^0.0.4",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "rollup-plugin-external-globals": "^0.10.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
