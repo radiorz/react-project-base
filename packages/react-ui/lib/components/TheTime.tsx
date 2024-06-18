@@ -3,7 +3,7 @@ import { useTime } from "@tikkhun/react-hooks";
 function TheTime() {
   const { currentTime } = useTime();
 
-  return <p>{currentTime.toLocaleTimeString()}</p>;
+  return <span>{currentTime.toLocaleTimeString()}</span>;
 }
 
 export default TheTime;
