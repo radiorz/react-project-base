@@ -1,1 +1,2 @@
-export { default as TheTime } from "./components/TheTime";
+export * from "./TheTime";
+export * from "./TheResize";

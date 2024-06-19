@@ -13,8 +13,6 @@
  */
 
 // 用来解决剩余高度问题
-function TheResize() {
+export function TheResize() {
   return <div>TheResize</div>;
 }
-
-export default TheResize;
