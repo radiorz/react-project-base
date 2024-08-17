@@ -1,2 +1,3 @@
 export * from "./TheTime";
-export * from "./TheResize";
+export * from "./MaxHeight";
+export * from "./collapsible";
