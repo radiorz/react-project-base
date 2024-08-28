@@ -22,9 +22,9 @@ export function MaxHeight(props: MaxHeightProps) {
   const { height } = useMaxHeight(elRef, props.footerHeight);
   return <div ref={elRef}>{props.children(height)}</div>;
 }
-export function getMaxHeight(el: HTMLElement, footerHeight = 0) {
-  const rect = el.getBoundingClientRect();
-  return window.innerHeight - rect.top - footerHeight;
+export function getMaxHeight(el: HTMLElement, footerHeight = 0): number {
+  const rect = el?.getBoundingClientRect?.();
+  return window.innerHeight - (rect?.top || 0) - footerHeight;
 }
 
 export function useMaxHeight(

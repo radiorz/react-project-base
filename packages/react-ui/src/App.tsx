@@ -12,20 +12,14 @@
  * @example
  */
 import React from "react";
-import { TheTime, MaxHeight } from "../lib";
-
+import { ThreeColumnLayout, MaxHeight, TheTime } from "../lib";
 function App() {
   return (
-    <>
-      <TheTime></TheTime>
-      <MaxHeight>
-        {(height) => {
-          return (
-            <div style={{ height: height + "px", background: "green" }}></div>
-          );
-        }}
-      </MaxHeight>
-    </>
+    <ThreeColumnLayout className="w-20 h-screen">
+      <div className="h-screen ">Left Panel Content</div>
+      <div className="h-screen ">Middle Panel Content</div>
+      <div className="h-screen ">Right Panel Content</div>
+    </ThreeColumnLayout>
   );
 }
 

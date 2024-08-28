@@ -5,19 +5,19 @@ import {
   UpOutlined,
   DownOutlined,
 } from "@ant-design/icons";
-export type SiderDirection = "left" | "right" | "top" | "bottom";
-export interface SiderProps {
+export type CollapseBoxDirection = "left" | "right" | "top" | "bottom";
+export interface CollapseBoxProps {
   className?: string;
   children?: React.ReactNode;
-  direction?: SiderDirection;
-  collapsible?: SiderDirection[];
+  direction?: CollapseBoxDirection;
+  collapsible?: CollapseBoxDirection[];
 }
-const Sider = ({
+export const CollapseBox = ({
   className,
   children,
   direction = "left",
   collapsible = ["left"],
-}: SiderProps) => {
+}: CollapseBoxProps) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleCollapse = () => {
@@ -68,9 +68,8 @@ const Sider = ({
         return "";
     }
   };
-
   return (
-    <aside
+    <div
       className={`flex ${className}`}
       style={{
         flexDirection:
@@ -98,8 +97,6 @@ const Sider = ({
           {getCollapseIconComponent()}
         </div>
       )}
-    </aside>
+    </div>
   );
 };
-
-export default Sider;
