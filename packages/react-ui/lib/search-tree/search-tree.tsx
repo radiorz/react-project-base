@@ -1,4 +1,3 @@
-import { useMaxHeight } from "../max-height";
 import {
   DeleteOutlined,
   EditOutlined,
@@ -8,7 +7,8 @@ import {
 } from "@ant-design/icons";
 import { Button, Input, Spin, Tree } from "antd";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { Key, ReactNode, useRef, useState } from "react";
+import { Key, useRef, useState } from "react";
+import { useMaxHeight } from "../max-height";
 import styles from "./search-tree.module.css" assert { type: "css" };
 
 interface TreeNode {
@@ -22,7 +22,7 @@ interface TreeNode {
 }
 
 interface SearchTreeProps {
-  renderIcon: (item: any) => ReactNode;
+  renderIcon: (item: any) => JSX.Element;
   onSelect: (selectedNode: TreeNode) => void;
   onAddClick: (node: TreeNode) => void;
   onDeleteClick: (node: TreeNode) => void;

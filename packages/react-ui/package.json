@@ -6,12 +6,16 @@
   "module": "dist/react-ui.umd.cjs",
   "types": "dist/index.d.ts",
   "exports": {
-    "import": "./dist/react-ui.js",
-    "require": "./dist/react-ui.umd.cjs",
-    "types": "./dist/index.d.ts"
+    ".": {
+      "import": "./dist/react-ui.js",
+      "require": "./dist/react-ui.umd.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "lib"
   ],
   "scripts": {
     "dev": "vite -c vite.config.app.ts",
