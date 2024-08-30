@@ -1,0 +1,6 @@
+.node-title:hover .node-title-btn {
+  display: block;
+}
+.node-title .node-title-btn {
+  display: none;
+}
