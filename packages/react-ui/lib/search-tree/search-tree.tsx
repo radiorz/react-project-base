@@ -6,12 +6,12 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import { Button, Input, Spin, Tree } from "antd";
+import { debounce } from "lodash-es";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { Key, useRef, useState } from "react";
+import { Key, useRef, useState, memo } from "react";
 import { useMaxHeight } from "../max-height";
+import { useResizeObserver } from "../resize/useResizeObserver";
 import styles from "./search-tree.module.css" assert { type: "css" };
-import useResizeObserver from "../resize/useResizeObserver";
-
 interface TreeNode {
   key: string;
   title: string;
@@ -32,7 +32,24 @@ interface SearchTreeProps {
   loading?: boolean;
   error?: any;
 }
-
+interface DebounceInputProps {
+  searchText: string;
+  onSearch: (value: string) => void;
+}
+const DebounceInput = memo(({ searchText, onSearch }: DebounceInputProps) => {
+  const handleChange = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    onSearch(value);
+  }, 250);
+  return (
+    <Input
+      value={searchText}
+      placeholder="输入关键词查找节点..."
+      onChange={handleChange}
+      prefix={<SearchOutlined />}
+    />
+  );
+});
 export default function SearchTree({
   renderIcon,
   onSelect,
@@ -52,7 +69,6 @@ export default function SearchTree({
     setExpandedKeys(newExpandedKeys);
     setAutoExpandParent(false);
   };
-
   const findExpandedKeysBySearchText = (
     treeData: TreeNode[] = [],
     searchText: string = ""
@@ -75,17 +91,15 @@ export default function SearchTree({
     return [...new Set(expandedKeys)];
   };
 
-  const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
+  const onSearch = (value: string) => {
+    setSearchValue(value);
     if (!value) {
       setExpandedKeys([]);
-      setSearchValue(value);
       setAutoExpandParent(false);
       return;
     }
     const expandedKeys = findExpandedKeysBySearchText(treeData, value);
     setExpandedKeys(expandedKeys);
-    setSearchValue(value);
     setAutoExpandParent(true);
   };
 
@@ -156,13 +170,11 @@ export default function SearchTree({
 
   return (
     <div>
-      <div className="flex mb-4">
-        <Input
-          placeholder="输入关键词查找节点..."
-          onChange={onSearch}
-          prefix={<SearchOutlined />}
-          className="mr-2"
-        />
+      <div className="flex gap-2 mb-4">
+        <DebounceInput
+          searchText={searchValue}
+          onSearch={onSearch}
+        ></DebounceInput>
         <Button icon={<ReloadOutlined />} onClick={onRefresh}>
           刷新
         </Button>
@@ -181,7 +193,7 @@ export default function SearchTree({
         </div>
       ) : (
         <OverlayScrollbarsComponent
-          ref={treeContainter}
+          ref={treeContainer}
           style={{ height: maxHeight ? maxHeight + "px" : "auto" }}
         >
           <Tree

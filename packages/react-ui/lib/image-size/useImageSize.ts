@@ -14,7 +14,7 @@
 import { getImageSize, type Dimension } from "./getImageSize";
 import { useEffect, useState } from "react";
 // import { useDispatch } from "react-redux";
-export default function useImageSize(image: string) {
+export function useImageSize(image: string) {
   const [dimensions, setDimensions] = useState<Dimension | null>(null);
   useEffect(() => {
     async function loadMapDimensions() {

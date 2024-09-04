@@ -4,7 +4,7 @@ import { getMaxHeight } from "./getMaxHeight";
 export function useMaxHeight(
   elRef: MutableRefObject<HTMLElement | null>,
   footerHeight = 0,
-  forceKey: any
+  forceKey?: any
 ) {
   const [height, setHeight] = useState(0);
   useEffect(() => {

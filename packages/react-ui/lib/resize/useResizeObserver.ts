@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // useResizeObserver hook
-export default function useResizeObserver(ref: any) {
+export function useResizeObserver(ref: any) {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   // const ref = useRef(null);
 
