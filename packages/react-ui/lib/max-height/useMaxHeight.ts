@@ -1,12 +1,10 @@
 import { MutableRefObject, useEffect, useState } from "react";
-export function getMaxHeight(el: HTMLElement, footerHeight = 0): number {
-  const rect = el?.getBoundingClientRect?.();
-  return window.innerHeight - (rect?.top || 0) - footerHeight;
-}
+import { getMaxHeight } from "./getMaxHeight";
 
 export function useMaxHeight(
   elRef: MutableRefObject<HTMLElement | null>,
-  footerHeight = 0
+  footerHeight = 0,
+  forceKey: any
 ) {
   const [height, setHeight] = useState(0);
   useEffect(() => {
@@ -22,7 +20,7 @@ export function useMaxHeight(
     return () => {
       window.removeEventListener("resize", updateHeight);
     };
-  }, [elRef, footerHeight]);
+  }, [elRef, footerHeight, forceKey]);
 
   return { height };
 }

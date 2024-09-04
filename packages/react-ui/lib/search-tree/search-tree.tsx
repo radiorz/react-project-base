@@ -10,6 +10,7 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { Key, useRef, useState } from "react";
 import { useMaxHeight } from "../max-height";
 import styles from "./search-tree.module.css" assert { type: "css" };
+import useResizeObserver from "../resize/useResizeObserver";
 
 interface TreeNode {
   key: string;
@@ -149,8 +150,9 @@ export default function SearchTree({
     );
   }
 
-  const treeContainter = useRef(null);
-  const { height: maxHeight } = useMaxHeight(treeContainter);
+  const treeContainer = useRef(null);
+  const { dimensions } = useResizeObserver(treeContainer);
+  const { height: maxHeight } = useMaxHeight(treeContainer, 0, dimensions);
 
   return (
     <div>
