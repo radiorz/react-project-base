@@ -8,10 +8,9 @@ import {
 import { Button, Input, Spin, Tree } from "antd";
 import { debounce } from "lodash-es";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { Key, useRef, useState, memo } from "react";
+import { Key, useRef, useState, memo, useCallback } from "react";
 import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
-import styles from "./search-tree.module.css" assert { type: "css" };
 interface TreeNode {
   key: string;
   title: string;
@@ -50,6 +49,28 @@ const DebounceInput = memo(({ searchText, onSearch }: DebounceInputProps) => {
     />
   );
 });
+
+const findExpandedKeysBySearchText = (
+  treeData: TreeNode[] = [],
+  searchText: string = ""
+): string[] => {
+  const expandedKeys: string[] = [];
+
+  const traverseTree = (nodes: TreeNode[]) => {
+    for (let i = 0; i < nodes.length; i++) {
+      const node = nodes[i];
+      if (node.title.includes(searchText)) {
+        expandedKeys.push(node.key);
+      }
+      if (node.children) {
+        traverseTree(node.children);
+      }
+    }
+  };
+
+  traverseTree(treeData);
+  return [...new Set(expandedKeys)];
+};
 export default function SearchTree({
   renderIcon,
   onSelect,
@@ -69,41 +90,23 @@ export default function SearchTree({
     setExpandedKeys(newExpandedKeys);
     setAutoExpandParent(false);
   };
-  const findExpandedKeysBySearchText = (
-    treeData: TreeNode[] = [],
-    searchText: string = ""
-  ): string[] => {
-    const expandedKeys: string[] = [];
 
-    const traverseTree = (nodes: TreeNode[]) => {
-      for (let i = 0; i < nodes.length; i++) {
-        const node = nodes[i];
-        if (node.title.includes(searchText)) {
-          expandedKeys.push(node.key);
-        }
-        if (node.children) {
-          traverseTree(node.children);
-        }
+  const onSearch = useCallback(
+    (value: string) => {
+      setSearchValue(value);
+      if (!value) {
+        setExpandedKeys([]);
+        setAutoExpandParent(false);
+        return;
       }
-    };
+      const expandedKeys = findExpandedKeysBySearchText(treeData, value);
+      setExpandedKeys(expandedKeys);
+      setAutoExpandParent(true);
+    },
+    [treeData]
+  );
 
-    traverseTree(treeData);
-    return [...new Set(expandedKeys)];
-  };
-
-  const onSearch = (value: string) => {
-    setSearchValue(value);
-    if (!value) {
-      setExpandedKeys([]);
-      setAutoExpandParent(false);
-      return;
-    }
-    const expandedKeys = findExpandedKeysBySearchText(treeData, value);
-    setExpandedKeys(expandedKeys);
-    setAutoExpandParent(true);
-  };
-
-  function renderNodeTitle(item: TreeNode) {
+  const renderNodeTitle = (item: TreeNode) => {
     const index = item?.title?.indexOf(searchValue || "");
     let title;
     if (index > -1) {
@@ -132,16 +135,14 @@ export default function SearchTree({
       if (type === "update") onUpdateClick(node);
     }
     return (
-      <div
-        className={
-          "flex items-center justify-between w-full " + styles["node-title"]
-        }
-      >
+      <div className="flex items-center justify-between w-full">
         <div className="flex items-center gap-2">
           {icon}
           {title}
         </div>
-        <div className={styles["node-title-btn"]}>
+        (
+        <div className="hidden group-hover:block">
+          {/* 父元素出发显示 */}
           <Button
             icon={<PlusOutlined />}
             size="small"
@@ -160,9 +161,10 @@ export default function SearchTree({
             onClick={(e) => handleNodeAction(e, "delete", item)}
           />
         </div>
+        )
       </div>
     );
-  }
+  };
 
   const treeContainer = useRef(null);
   const { dimensions } = useResizeObserver(treeContainer);
