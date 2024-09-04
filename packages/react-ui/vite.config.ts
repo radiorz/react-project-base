@@ -1,12 +1,18 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-
+import banner from "vite-plugin-banner";
 import packageJson from "./package.json";
 import { fileURLToPath, URL } from "node:url";
 
 const name = packageJson.name.split("/")[1];
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    banner(`
+    packageName: ${packageJson.name} 
+    version: ${packageJson.version}
+    `),
+  ],
   build: {
     lib: {
       entry: "./lib/index.ts",
@@ -20,7 +26,10 @@ export default defineConfig({
           "react-dom": "ReactDOM",
         },
       },
-      external: ["react", "react-dom"/* , "react-router", "react-router-dom" */],
+      external: [
+        "react",
+        "react-dom" /* , "react-router", "react-router-dom" */,
+      ],
     },
   },
   resolve: {
