@@ -1,10 +1,10 @@
 /**
  * @author
- * @file Layout.tsx
+ * @file SashLayout.tsx
  * @fileBase Test
- * @path src/pages/Test/Layout.tsx
+ * @path src/pages/Test/SashLayout.tsx
  * @from
- * @desc A flexible layout component that allows for resizable sections
+ * @desc A flexible SashLayout component that allows for resizable sections
  * @todo
  *
  * @done Converted to TypeScript
@@ -15,8 +15,8 @@ import React, { useState, ReactNode } from "react";
 import Sash from "./sash";
 import { DirectionMap, checkPositive } from "./utils";
 
-// Define the prop types for the Layout component
-export interface LayoutProps {
+// Define the prop types for the SashLayout component
+export interface SashLayoutProps {
   className?: string;
   children: ReactNode | ReactNode[];
   defaultLengths?: number[];
@@ -26,7 +26,7 @@ export interface LayoutProps {
 // Define the type for the length state
 type Lengths = number[];
 
-export const Layout: React.FC<LayoutProps> = ({
+export const SashLayout: React.FC<SashLayoutProps> = ({
   className = "",
   children,
   defaultLengths = [],
@@ -35,7 +35,7 @@ export const Layout: React.FC<LayoutProps> = ({
   // State to hold the lengths of each section
   const [lengths, setLengths] = useState<Lengths>(defaultLengths);
 
-  // Determine if the layout is horizontal
+  // Determine if the SashLayout is horizontal
   const isHorizontal = direction === DirectionMap.horizontal;
 
   // Function to create sashes between sections and handle resizing
