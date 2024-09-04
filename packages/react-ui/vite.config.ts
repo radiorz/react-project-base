@@ -20,7 +20,7 @@ export default defineConfig({
           "react-dom": "ReactDOM",
         },
       },
-      external: ["react", "react-dom", "react-router", "react-router-dom"],
+      external: ["react", "react-dom"/* , "react-router", "react-router-dom" */],
     },
   },
   resolve: {
