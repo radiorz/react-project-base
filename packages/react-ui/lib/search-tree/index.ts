@@ -1,1 +1,1 @@
-export { default as SearchTree } from "./search-tree";
+export * from "./search-tree";

@@ -11,14 +11,14 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { Key, useRef, useState, memo, useCallback } from "react";
 import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
-interface TreeNode {
+export interface TreeNode {
   key: string;
   title: string;
   children?: TreeNode[];
   icon?: string;
 }
 
-interface SearchTreeProps {
+export interface SearchTreeProps {
   selectedKeys: string[];
   setSelectedKeys: (selectedKeys: string[]) => void;
   renderIcon: (item: any) => JSX.Element;
@@ -31,26 +31,28 @@ interface SearchTreeProps {
   loading?: boolean;
   error?: any;
 }
-interface DebounceInputProps {
+export interface DebounceInputProps {
   searchText: string;
   onSearch: (value: string) => void;
 }
-const DebounceInput = memo(({ searchText, onSearch }: DebounceInputProps) => {
-  const handleChange = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    onSearch(value);
-  }, 250);
-  return (
-    <Input
-      value={searchText}
-      placeholder="输入关键词查找节点..."
-      onChange={handleChange}
-      prefix={<SearchOutlined />}
-    />
-  );
-});
+export const DebounceInput = memo(
+  ({ searchText, onSearch }: DebounceInputProps) => {
+    const handleChange = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      onSearch(value);
+    }, 250);
+    return (
+      <Input
+        value={searchText}
+        placeholder="输入关键词查找节点..."
+        onChange={handleChange}
+        prefix={<SearchOutlined />}
+      />
+    );
+  }
+);
 
-const findExpandedKeysBySearchText = (
+export const findExpandedKeysBySearchText = (
   treeData: TreeNode[] = [],
   searchText: string = ""
 ): string[] => {
@@ -71,7 +73,7 @@ const findExpandedKeysBySearchText = (
   traverseTree(treeData);
   return [...new Set(expandedKeys)];
 };
-export default function SearchTree({
+export function SearchTree({
   renderIcon,
   onSelect,
   onAddClick,
