@@ -16,12 +16,11 @@ interface TreeNode {
   title: string;
   children?: TreeNode[];
   icon?: string;
-  resource?: {
-    type: string;
-  };
 }
 
 interface SearchTreeProps {
+  selectedKeys: string[];
+  setSelectedKeys: (selectedKeys: string[]) => void;
   renderIcon: (item: any) => JSX.Element;
   onSelect: (selectedNode: TreeNode) => void;
   onAddClick: (node: TreeNode) => void;
