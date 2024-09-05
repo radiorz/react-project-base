@@ -5,3 +5,8 @@ export interface TreeNodeProps {
   icon?: string;
   parentKey?: string;
 }
+export interface NodeAction {
+  icon: any;
+  name: string;
+  title?: string;
+}

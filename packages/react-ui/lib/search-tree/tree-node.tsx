@@ -1,10 +1,12 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
+import { type NodeAction } from "./search-tree.interface";
 export interface TreeNodeComponentProps {
   item: any;
-  renderIcon: Function;
+  renderIcon?: Function;
   searchValue: string;
-  handleNodeAction: Function;
+  nodeActions?: NodeAction[];
+  handleNodeAction?: Function;
 }
 export function useSearchTitle(title: string, searchValue: string) {
   const index = title?.indexOf(searchValue || "");
@@ -24,20 +26,26 @@ export function useSearchTitle(title: string, searchValue: string) {
   }
   return titleComp;
 }
+
 export const TreeNode = ({
   item,
   renderIcon,
   searchValue,
+  nodeActions = [
+    { icon: <PlusOutlined />, name: "addChild", title: "添加子节点" },
+    { icon: <EditOutlined />, name: "update", title: "编辑节点" },
+    { icon: <DeleteOutlined />, name: "delete", title: "删除节点" },
+  ],
   handleNodeAction,
 }: TreeNodeComponentProps) => {
   const title = useSearchTitle(item?.title, searchValue);
-  const icon = renderIcon(item);
+  const icon = renderIcon?.(item);
   function _handleNodeAction(
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     type: string
   ) {
     e.stopPropagation();
-    handleNodeAction(type, item);
+    handleNodeAction?.(type, item);
   }
   return (
     <div className="flex items-center justify-between w-full group">
@@ -47,25 +55,17 @@ export const TreeNode = ({
       </div>
       {/* 父元素触发发显示 */}
       <div className="hidden group-hover:block">
-        {/* todo 当特别窄的时候之显示一个...图标 */}
-        <Button
-          icon={<PlusOutlined />}
-          size="small"
-          onClick={(e) => _handleNodeAction(e, "add")}
-          className="mr-1"
-        />
-        <Button
-          icon={<EditOutlined />}
-          size="small"
-          onClick={(e) => _handleNodeAction(e, "update")}
-          className="mr-1"
-        />
-        <Button
-          icon={<DeleteOutlined />}
-          size="small"
-          onClick={(e) => _handleNodeAction(e, "delete")}
-        />
-        {/* 其他action行为 */}
+        {/* TODO 当特别窄的时候之显示一个...图标 */}
+        {nodeActions.map(({ icon, name }) => {
+          return (
+            <Button
+              icon={icon}
+              size="small"
+              onClick={(e) => _handleNodeAction(e, name)}
+              className="mr-1"
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -7,20 +7,21 @@ import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
 import { TreeNode } from "./tree-node";
 const MemorizedTreeNode = memo(TreeNode);
-import { TreeNodeProps } from "./search-tree.interface";
+import { NodeAction, TreeNodeProps } from "./search-tree.interface";
 import { findExpandedKeysBySearchText } from "./utils";
 export interface SearchTreeProps {
   selectedKeys: string[];
   setSelectedKeys: Function;
   renderIcon: (item: any) => JSX.Element;
   onSelect: (selectedNode: TreeNodeProps) => void;
-  nodeActions?: any[];
+  nodeActions?: NodeAction[];
   handleNodeAction: (type: string, node: TreeNodeProps) => void;
   onRefresh: () => void;
   treeData?: TreeNodeProps[];
   loading?: boolean;
   error?: any;
 }
+// DebounceInput
 export interface DebounceInputProps {
   // searchText: string;
   onSearch: (value: string) => void;
@@ -63,6 +64,7 @@ export function ErrorTip() {
 export function SearchTree({
   renderIcon,
   onSelect,
+  nodeActions,
   handleNodeAction,
   treeData,
   loading,
@@ -96,6 +98,7 @@ export function SearchTree({
   const renderNodeTitle = (item: TreeNodeProps) => {
     return (
       <MemorizedTreeNode
+        nodeActions={nodeActions}
         renderIcon={renderIcon}
         item={item}
         searchValue={searchValue}
@@ -129,14 +132,14 @@ export function SearchTree({
       ) : (
         <div
           ref={treeContainer}
-          className="flex-grow overflow-hidden bg-white rounded-md"
+          className="flex-grow overflow-hidden rounded-md"
         >
           <OverlayScrollbarsComponent
-            className="w-full h-auto"
+            className="w-full h-auto "
             style={{ height: maxHeight > 0 ? maxHeight + "px" : "auto" }}
           >
             <Tree
-              className="p-4 !rounded-none"
+              className="p-4 bg-white !rounded-md"
               onExpand={onExpand}
               expandedKeys={expandedKeys}
               autoExpandParent={autoExpandParent}
