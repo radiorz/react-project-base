@@ -13,12 +13,14 @@
  */
 
 import "@tikkhun/react-ui/dist/style.css";
-import { TheTime, SearchTree } from "@tikkhun/react-ui";
+import { TheTime, SearchTree, addKeyToNode } from "@tikkhun/react-ui";
 import { useState } from "react";
+import { treeData } from "./treeData";
+const treeeData = addKeyToNode(treeData);
 function App() {
   const [selectedKeys, setSelectedKeys] = useState([]);
   return (
-    <div>
+    <div className="overflow-hidden bg-slate-800">
       <TheTime></TheTime>
       <SearchTree
         selectedKeys={selectedKeys}
@@ -29,18 +31,7 @@ function App() {
         onDeleteClick={() => {}}
         onUpdateClick={() => {}}
         onRefresh={() => {}}
-        treeData={[
-          {
-            key: "0",
-            title: "123",
-            children: [
-              {
-                key: "1",
-                title: "222",
-              },
-            ],
-          },
-        ]}
+        treeData={treeeData}
       ></SearchTree>
     </div>
   );

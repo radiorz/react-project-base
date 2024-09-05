@@ -20,7 +20,7 @@ export function useMaxHeight(
     return () => {
       window.removeEventListener("resize", updateHeight);
     };
-  }, [elRef, footerHeight, forceKey]);
+  }, [elRef.current, footerHeight, forceKey]);
 
   return { height };
 }
