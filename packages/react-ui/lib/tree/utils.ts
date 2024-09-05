@@ -3,6 +3,7 @@ export function addKeyToNode(tree: any[] = [], parentKey: string = ""): any[] {
     const key = parentKey ? `${parentKey}-${i}` : `${i}`;
     return {
       ...item,
+      parentKey,
       key,
       children: item.children && addKeyToNode(item.children, key),
     };

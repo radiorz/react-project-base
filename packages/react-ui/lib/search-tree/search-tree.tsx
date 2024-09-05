@@ -11,58 +11,56 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { Key, useRef, useState, memo, useCallback } from "react";
 import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
-export interface TreeNode {
-  key: string;
-  title: string;
-  children?: TreeNode[];
+export interface TreeNodeProps {
+  key?: string;
+  title?: string;
+  children?: TreeNodeProps[];
   icon?: string;
+  parentKey?: string;
 }
 
 export interface SearchTreeProps {
   selectedKeys: string[];
   setSelectedKeys: (selectedKeys: string[]) => void;
   renderIcon: (item: any) => JSX.Element;
-  onSelect: (selectedNode: TreeNode) => void;
-  onAddClick: (node: TreeNode) => void;
-  onDeleteClick: (node: TreeNode) => void;
-  onUpdateClick: (node: TreeNode) => void;
+  onSelect: (selectedNode: TreeNodeProps) => void;
+  onAddClick: (node: TreeNodeProps) => void;
+  onDeleteClick: (node: TreeNodeProps) => void;
+  onUpdateClick: (node: TreeNodeProps) => void;
   onRefresh: () => void;
-  treeData?: TreeNode[];
+  treeData?: TreeNodeProps[];
   loading?: boolean;
   error?: any;
 }
 export interface DebounceInputProps {
-  searchText: string;
+  // searchText: string;
   onSearch: (value: string) => void;
 }
-export const DebounceInput = memo(
-  ({ searchText, onSearch }: DebounceInputProps) => {
-    const handleChange = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-      onSearch(value);
-    }, 250);
-    return (
-      <Input
-        value={searchText}
-        placeholder="输入关键词查找节点..."
-        onChange={handleChange}
-        prefix={<SearchOutlined />}
-      />
-    );
-  }
-);
+export const DebounceInput = memo(({ onSearch }: DebounceInputProps) => {
+  const handleChange = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    onSearch(value);
+  }, 250);
+  return (
+    <Input
+      placeholder="输入关键词查找节点..."
+      onChange={handleChange}
+      prefix={<SearchOutlined />}
+    />
+  );
+});
 
-export const findExpandedKeysBySearchText = (
-  treeData: TreeNode[] = [],
+const findExpandedKeysBySearchText = (
+  treeData: any[] = [],
   searchText: string = ""
-): string[] => {
+) => {
   const expandedKeys: string[] = [];
 
-  const traverseTree = (nodes: TreeNode[]) => {
+  const traverseTree = (nodes: TreeNodeProps[]) => {
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i];
-      if (node.title.includes(searchText)) {
-        expandedKeys.push(node.key);
+      if (node?.title?.includes(searchText) && node?.parentKey) {
+        expandedKeys.push(node?.parentKey);
       }
       if (node.children) {
         traverseTree(node.children);
@@ -101,19 +99,21 @@ export function SearchTree({
         setAutoExpandParent(false);
         return;
       }
+      console.log(`value`, value);
       const expandedKeys = findExpandedKeysBySearchText(treeData, value);
+      console.log(`expandedKeys`, expandedKeys);
       setExpandedKeys(expandedKeys);
       setAutoExpandParent(true);
     },
     [treeData]
   );
 
-  const renderNodeTitle = (item: TreeNode) => {
+  const renderNodeTitle = (item: TreeNodeProps) => {
     const index = item?.title?.indexOf(searchValue || "");
     let title;
-    if (index > -1) {
-      const beforeStr = item?.title?.substr(0, index);
-      const afterStr = item?.title?.substr(index + searchValue.length);
+    if (typeof index !== "undefined" && index > -1) {
+      const beforeStr = item?.title?.substring(0, index);
+      const afterStr = item?.title?.substring(index + searchValue.length);
       title = (
         <span>
           {beforeStr}
@@ -129,7 +129,7 @@ export function SearchTree({
     function handleNodeAction(
       e: React.MouseEvent,
       type: string,
-      node: TreeNode
+      node: TreeNodeProps
     ) {
       e.stopPropagation();
       if (type === "add") onAddClick(node);
@@ -174,7 +174,7 @@ export function SearchTree({
     <div>
       <div className="flex gap-2 mb-4">
         <DebounceInput
-          searchText={searchValue}
+          // searchText={searchValue}
           onSearch={onSearch}
         ></DebounceInput>
         <Button icon={<ReloadOutlined />} onClick={onRefresh}>
@@ -204,7 +204,7 @@ export function SearchTree({
               expandedKeys={expandedKeys}
               autoExpandParent={autoExpandParent}
               onSelect={(_, info) => {
-                const selectedNode = info.selectedNodes[0] as TreeNode;
+                const selectedNode = info.selectedNodes[0] as TreeNodeProps;
                 onSelect(selectedNode);
               }}
               treeData={treeData}
