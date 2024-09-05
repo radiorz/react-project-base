@@ -28,9 +28,7 @@ function App() {
         setSelectedKeys={setSelectedKeys}
         renderIcon={() => <div>123</div>}
         onSelect={() => {}}
-        onAddClick={() => {}}
-        onDeleteClick={() => {}}
-        onUpdateClick={() => {}}
+        handleNodeAction={(type, node) => console.log(type, node)}
         onRefresh={() => {}}
         treeData={treeeData}
       ></SearchTree>

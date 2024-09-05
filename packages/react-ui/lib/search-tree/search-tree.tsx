@@ -1,32 +1,21 @@
-import {
-  DeleteOutlined,
-  EditOutlined,
-  PlusOutlined,
-  ReloadOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
+import { ReloadOutlined, SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Spin, Tree } from "antd";
 import { debounce } from "lodash-es";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { Key, memo, useCallback, useRef, useState } from "react";
 import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
-export interface TreeNodeProps {
-  key?: string;
-  title?: string;
-  children?: TreeNodeProps[];
-  icon?: string;
-  parentKey?: string;
-}
-
+import { TreeNode } from "./tree-node";
+const MemorizedTreeNode = memo(TreeNode);
+import { TreeNodeProps } from "./search-tree.interface";
+import { findExpandedKeysBySearchText } from "./utils";
 export interface SearchTreeProps {
   selectedKeys: string[];
-  setSelectedKeys: (selectedKeys: string[]) => void;
+  setSelectedKeys: Function;
   renderIcon: (item: any) => JSX.Element;
   onSelect: (selectedNode: TreeNodeProps) => void;
-  onAddClick: (node: TreeNodeProps) => void;
-  onDeleteClick: (node: TreeNodeProps) => void;
-  onUpdateClick: (node: TreeNodeProps) => void;
+  nodeActions?: any[];
+  handleNodeAction: (type: string, node: TreeNodeProps) => void;
   onRefresh: () => void;
   treeData?: TreeNodeProps[];
   loading?: boolean;
@@ -50,33 +39,31 @@ export const DebounceInput = memo(({ onSearch }: DebounceInputProps) => {
   );
 });
 
-const findExpandedKeysBySearchText = (
-  treeData: any[] = [],
-  searchText: string = ""
-) => {
-  const expandedKeys: string[] = [];
-
-  const traverseTree = (nodes: TreeNodeProps[]) => {
-    for (let i = 0; i < nodes.length; i++) {
-      const node = nodes[i];
-      if (node?.title?.includes(searchText) && node?.parentKey) {
-        expandedKeys.push(node?.parentKey);
-      }
-      if (node.children) {
-        traverseTree(node.children);
-      }
-    }
-  };
-
-  traverseTree(treeData);
-  return [...new Set(expandedKeys)];
-};
+export function Loading() {
+  return (
+    <div className="flex items-center justify-center w-full h-full max-h-screen max-w-screen">
+      <Spin />
+    </div>
+  );
+}
+export function EmptyTip() {
+  return (
+    <div className="flex items-center justify-center w-full h-full max-h-screen max-w-screen">
+      树为空
+    </div>
+  );
+}
+export function ErrorTip() {
+  return (
+    <div className="flex items-center justify-center w-full h-full max-h-screen max-w-screen">
+      获取错误,请刷新
+    </div>
+  );
+}
 export function SearchTree({
   renderIcon,
   onSelect,
-  onAddClick,
-  onDeleteClick,
-  onUpdateClick,
+  handleNodeAction,
   treeData,
   loading,
   error,
@@ -85,90 +72,38 @@ export function SearchTree({
   const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
   const [autoExpandParent, setAutoExpandParent] = useState<boolean>(true);
-
+  // 树节点展开渲染的回调
   const onExpand = (newExpandedKeys: Key[]) => {
     setExpandedKeys(newExpandedKeys);
     setAutoExpandParent(false);
   };
-
+  // 选择树节点
   const onSearch = useCallback(
     (value: string) => {
-      try {
-        setSearchValue(value);
-        if (!value) {
-          setExpandedKeys([]);
-          setAutoExpandParent(false);
-          return;
-        }
-        const expandedKeys = findExpandedKeysBySearchText(treeData, value);
-        setExpandedKeys(expandedKeys);
-        setAutoExpandParent(true);
-      } catch (error) {
-      } finally {
-        // 这里loading = false
+      setSearchValue(value);
+      if (!value) {
+        setExpandedKeys([]);
+        setAutoExpandParent(false);
+        return;
       }
+      const expandedKeys = findExpandedKeysBySearchText(treeData, value);
+      setExpandedKeys(expandedKeys);
+      setAutoExpandParent(true);
     },
     [treeData]
   );
-
+  // 处理树节点渲染
   const renderNodeTitle = (item: TreeNodeProps) => {
-    const index = item?.title?.indexOf(searchValue || "");
-    let title;
-    if (typeof index !== "undefined" && index > -1) {
-      const beforeStr = item?.title?.substring(0, index);
-      const afterStr = item?.title?.substring(index + searchValue.length);
-      title = (
-        <span>
-          {beforeStr}
-          <span className="text-red-500 bg-yellow-200">{searchValue}</span>
-          {afterStr}
-        </span>
-      );
-    } else {
-      title = <span>{item.title}</span>;
-    }
-
-    const icon = renderIcon(item);
-    function handleNodeAction(
-      e: React.MouseEvent,
-      type: string,
-      node: TreeNodeProps
-    ) {
-      e.stopPropagation();
-      if (type === "add") onAddClick(node);
-      if (type === "delete") onDeleteClick(node);
-      if (type === "update") onUpdateClick(node);
-    }
     return (
-      <div className="flex items-center justify-between w-full group">
-        <div className="flex items-center gap-2">
-          {icon}
-          {title}
-        </div>
-        <div className="hidden group-hover:block">
-          {/* 父元素出发显示 */}
-          <Button
-            icon={<PlusOutlined />}
-            size="small"
-            onClick={(e) => handleNodeAction(e, "add", item)}
-            className="mr-1"
-          />
-          <Button
-            icon={<EditOutlined />}
-            size="small"
-            onClick={(e) => handleNodeAction(e, "update", item)}
-            className="mr-1"
-          />
-          <Button
-            icon={<DeleteOutlined />}
-            size="small"
-            onClick={(e) => handleNodeAction(e, "delete", item)}
-          />
-        </div>
-      </div>
+      <MemorizedTreeNode
+        renderIcon={renderIcon}
+        item={item}
+        searchValue={searchValue}
+        handleNodeAction={handleNodeAction}
+      ></MemorizedTreeNode>
     );
   };
-
+  // 处理刷新
   const treeContainer = useRef(null);
   const { dimensions } = useResizeObserver(treeContainer);
   // 底部漏出16
@@ -186,17 +121,11 @@ export function SearchTree({
         </Button>
       </div>
       {error ? (
-        <div className="flex items-center justify-center w-full h-full">
-          获取错误,请刷新
-        </div>
+        <ErrorTip></ErrorTip>
       ) : loading ? (
-        <div className="flex items-center justify-center w-full h-full">
-          <Spin />
-        </div>
+        <Loading></Loading>
       ) : !treeData || !treeData?.length ? (
-        <div className="flex items-center justify-center w-full max-h-screen">
-          树为空
-        </div>
+        <EmptyTip></EmptyTip>
       ) : (
         <div
           ref={treeContainer}
