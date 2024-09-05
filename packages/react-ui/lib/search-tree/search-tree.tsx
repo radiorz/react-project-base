@@ -8,7 +8,7 @@ import {
 import { Button, Input, Spin, Tree } from "antd";
 import { debounce } from "lodash-es";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { Key, useRef, useState, memo, useCallback } from "react";
+import { Key, memo, useCallback, useRef, useState } from "react";
 import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
 export interface TreeNodeProps {
@@ -93,17 +93,20 @@ export function SearchTree({
 
   const onSearch = useCallback(
     (value: string) => {
-      setSearchValue(value);
-      if (!value) {
-        setExpandedKeys([]);
-        setAutoExpandParent(false);
-        return;
+      try {
+        setSearchValue(value);
+        if (!value) {
+          setExpandedKeys([]);
+          setAutoExpandParent(false);
+          return;
+        }
+        const expandedKeys = findExpandedKeysBySearchText(treeData, value);
+        setExpandedKeys(expandedKeys);
+        setAutoExpandParent(true);
+      } catch (error) {
+      } finally {
+        // 这里loading = false
       }
-      console.log(`value`, value);
-      const expandedKeys = findExpandedKeysBySearchText(treeData, value);
-      console.log(`expandedKeys`, expandedKeys);
-      setExpandedKeys(expandedKeys);
-      setAutoExpandParent(true);
     },
     [treeData]
   );
@@ -168,8 +171,9 @@ export function SearchTree({
 
   const treeContainer = useRef(null);
   const { dimensions } = useResizeObserver(treeContainer);
-  const { height: maxHeight } = useMaxHeight(treeContainer, 0, dimensions);
-
+  // 底部漏出16
+  const { height: maxHeight } = useMaxHeight(treeContainer, 16, dimensions);
+  // console.log(`maxHeight`, maxHeight);
   return (
     <div>
       <div className="flex gap-2 mb-4">
@@ -194,12 +198,16 @@ export function SearchTree({
           树为空
         </div>
       ) : (
-        <div ref={treeContainer} className="flex-grow bg-white rounded-md">
+        <div
+          ref={treeContainer}
+          className="flex-grow overflow-hidden bg-white rounded-md"
+        >
           <OverlayScrollbarsComponent
-            style={{ height: maxHeight ? maxHeight + "px" : "auto" }}
+            className="w-full h-auto"
+            style={{ height: maxHeight > 0 ? maxHeight + "px" : "auto" }}
           >
             <Tree
-              className="p-4"
+              className="p-4 !rounded-none"
               onExpand={onExpand}
               expandedKeys={expandedKeys}
               autoExpandParent={autoExpandParent}
@@ -211,7 +219,6 @@ export function SearchTree({
               blockNode
               titleRender={renderNodeTitle}
             />
-            <div className="h-20"></div>
           </OverlayScrollbarsComponent>
         </div>
       )}

@@ -12,21 +12,21 @@
  * @example
  */
 
-import "@tikkhun/react-ui/dist/style.css";
+// import "@tikkhun/react-ui/dist/style.css";
 import { TheTime, SearchTree } from "../lib";
 import { useState } from "react";
 import { treeData } from "./treeData";
-import { addKeyToNode } from "../lib/tree/utils";
+import { addKeyToNode } from "../lib";
 const treeeData = addKeyToNode(treeData);
 function App() {
   const [selectedKeys, setSelectedKeys] = useState([]);
   return (
-    <div>
+    <div className="overflow-hidden bg-slate-800">
       <TheTime></TheTime>
       <SearchTree
         selectedKeys={selectedKeys}
         setSelectedKeys={setSelectedKeys}
-        renderIcon={() => <div>icon</div>}
+        renderIcon={() => <div>123</div>}
         onSelect={() => {}}
         onAddClick={() => {}}
         onDeleteClick={() => {}}

@@ -1,4 +1,5 @@
 import "./index.css";
+import "overlayscrollbars/overlayscrollbars.css";
 export * from "./full-screen";
 export * from "./image-size";
 export * from "./max-height";
