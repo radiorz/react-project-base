@@ -137,12 +137,11 @@ export function SearchTree({
       if (type === "update") onUpdateClick(node);
     }
     return (
-      <div className="flex items-center justify-between w-full">
+      <div className="flex items-center justify-between w-full group">
         <div className="flex items-center gap-2">
           {icon}
           {title}
         </div>
-        (
         <div className="hidden group-hover:block">
           {/* 父元素出发显示 */}
           <Button
@@ -163,7 +162,6 @@ export function SearchTree({
             onClick={(e) => handleNodeAction(e, "delete", item)}
           />
         </div>
-        )
       </div>
     );
   };
@@ -196,25 +194,26 @@ export function SearchTree({
           树为空
         </div>
       ) : (
-        <OverlayScrollbarsComponent
-          ref={treeContainer}
-          style={{ height: maxHeight ? maxHeight + "px" : "auto" }}
-        >
-          <Tree
-            className="p-4"
-            onExpand={onExpand}
-            expandedKeys={expandedKeys}
-            autoExpandParent={autoExpandParent}
-            onSelect={(_, info) => {
-              const selectedNode = info.selectedNodes[0] as TreeNode;
-              onSelect(selectedNode);
-            }}
-            treeData={treeData}
-            blockNode
-            titleRender={renderNodeTitle}
-          />
-          <div className="h-20"></div>
-        </OverlayScrollbarsComponent>
+        <div ref={treeContainer} className="flex-grow bg-white rounded-md">
+          <OverlayScrollbarsComponent
+            style={{ height: maxHeight ? maxHeight + "px" : "auto" }}
+          >
+            <Tree
+              className="p-4"
+              onExpand={onExpand}
+              expandedKeys={expandedKeys}
+              autoExpandParent={autoExpandParent}
+              onSelect={(_, info) => {
+                const selectedNode = info.selectedNodes[0] as TreeNode;
+                onSelect(selectedNode);
+              }}
+              treeData={treeData}
+              blockNode
+              titleRender={renderNodeTitle}
+            />
+            <div className="h-20"></div>
+          </OverlayScrollbarsComponent>
+        </div>
       )}
     </div>
   );

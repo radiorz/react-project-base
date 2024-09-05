@@ -1,8 +1,8 @@
 /**
  * @author
- * @file index.jsx
- * @fileBase Test
- * @path src\pages\Test\index.jsx
+ * @file App.tsx
+ * @fileBase App
+ * @path projects\react-template\src\App.tsx
  * @from
  * @desc
  * @todo
@@ -12,21 +12,38 @@
  * @example
  */
 
-import { SashLayout, useWindowDimensions } from "@tikkhun/react-ui";
-import "@tikkhun/react-ui/dist/style.css"
-function Test() {
-  const { height } = useWindowDimensions(); // const
+import "@tikkhun/react-ui/dist/style.css";
+import { TheTime, SearchTree } from "@tikkhun/react-ui";
+import { useState } from "react";
+function App() {
+  const [selectedKeys, setSelectedKeys] = useState([]);
   return (
-    <SashLayout
-      direction="vertical"
-      defaultLengths={[height / 4, height / 4, height / 4, height / 4]}
-    >
-      <div className="w-full h-full bg-red-400"></div>
-      <div className="w-full h-full bg-green-400"></div>
-      <div className="w-full h-full bg-orange-400"></div>
-      <div className="w-full h-full bg-blue-400"></div>
-    </SashLayout>
+    <div>
+      <TheTime></TheTime>
+      <SearchTree
+        selectedKeys={selectedKeys}
+        setSelectedKeys={setSelectedKeys}
+        renderIcon={() => <div>123</div>}
+        onSelect={() => {}}
+        onAddClick={() => {}}
+        onDeleteClick={() => {}}
+        onUpdateClick={() => {}}
+        onRefresh={() => {}}
+        treeData={[
+          {
+            key: "0",
+            title: "123",
+            children: [
+              {
+                key: "1",
+                title: "222",
+              },
+            ],
+          },
+        ]}
+      ></SearchTree>
+    </div>
   );
 }
 
-export default Test;
+export default App;
