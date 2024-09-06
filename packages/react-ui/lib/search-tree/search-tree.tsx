@@ -9,8 +9,8 @@ const MemorizedTreeNode = memo(TreeNode);
 import { NodeAction, TreeNodeProps } from "./search-tree.interface";
 import { findExpandedKeysBySearchText } from "./utils";
 export interface SearchTreeProps {
-  selectedKeys: string[];
-  setSelectedKeys: Function;
+  selectedKeys?: string[];
+  setSelectedKeys?: Function;
   renderIcon?: (item: any) => JSX.Element;
   onSelect: (selectedNode: TreeNodeProps) => void;
   nodeActions?: NodeAction[];
@@ -61,6 +61,8 @@ export function ErrorTip() {
   );
 }
 export function SearchTree({
+  selectedKeys,
+  setSelectedKeys,
   // 树节点相关
   renderIcon,
   nodeActions,
@@ -102,10 +104,10 @@ export function SearchTree({
     return (
       <MemorizedTreeNode
         nodeActions={nodeActions}
+        handleNodeAction={handleNodeAction}
         renderIcon={renderIcon}
         item={item}
         searchValue={searchValue}
-        handleNodeAction={handleNodeAction}
       ></MemorizedTreeNode>
     );
   };
@@ -138,13 +140,15 @@ export function SearchTree({
           className="flex-grow overflow-hidden rounded-md"
         >
           <Tree
+            selectedKeys={selectedKeys}
             // 这个32是padding...
             height={maxHeight - 32 > 0 ? maxHeight - 32 : undefined}
             className="p-4 bg-white !rounded-md"
             onExpand={onExpand}
             expandedKeys={expandedKeys}
             autoExpandParent={autoExpandParent}
-            onSelect={(_, info) => {
+            onSelect={(selectedKeys, info) => {
+              setSelectedKeys?.(selectedKeys);
               const selectedNode = info.selectedNodes[0] as TreeNodeProps;
               onSelect(selectedNode);
             }}

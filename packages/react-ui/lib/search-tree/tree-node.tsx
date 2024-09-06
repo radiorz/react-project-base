@@ -43,8 +43,6 @@ export const TreeNode = ({
     { icon: <PlusOutlined />, name: "addChild", title: "添加子节点" },
     { icon: <EditOutlined />, name: "update", title: "编辑节点" },
     { icon: <DeleteOutlined />, name: "delete", title: "删除节点" },
-    { icon: <DeleteOutlined />, name: "delete", title: "删除节点" },
-    { icon: <DeleteOutlined />, name: "delete", title: "删除节点" },
   ],
   handleNodeAction,
 }: TreeNodeComponentProps) => {
@@ -81,9 +79,9 @@ export const TreeNode = ({
         {title}
       </div>
       <div className="items-center justify-center hidden gap-1 group-hover:flex">
-        {primaryActions.map(({ icon, name }) => (
+        {primaryActions.map(({ icon, name }, i) => (
           <Button
-            key={name}
+            key={i}
             icon={icon}
             size="small"
             onClick={(e) => _handleNodeAction(e, name)}
