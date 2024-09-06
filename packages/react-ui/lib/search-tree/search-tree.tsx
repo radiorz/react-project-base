@@ -32,7 +32,7 @@ export const DebounceInput = memo(({ onSearch }: DebounceInputProps) => {
   }, 250);
   return (
     <Input
-      className="!w-full @[300px]:!w-auto"
+      className="flex-grow"
       placeholder="输入关键词查找节点..."
       onChange={handleChange}
       prefix={<SearchOutlined />}
