@@ -1,7 +1,6 @@
 import { ReloadOutlined, SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Spin, Tree } from "antd";
 import { debounce } from "lodash-es";
-import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { Key, memo, useCallback, useRef, useState } from "react";
 import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
@@ -12,7 +11,7 @@ import { findExpandedKeysBySearchText } from "./utils";
 export interface SearchTreeProps {
   selectedKeys: string[];
   setSelectedKeys: Function;
-  renderIcon: (item: any) => JSX.Element;
+  renderIcon?: (item: any) => JSX.Element;
   onSelect: (selectedNode: TreeNodeProps) => void;
   nodeActions?: NodeAction[];
   handleNodeAction: (type: string, node: TreeNodeProps) => void;
@@ -62,18 +61,22 @@ export function ErrorTip() {
   );
 }
 export function SearchTree({
+  // 树节点相关
   renderIcon,
-  onSelect,
   nodeActions,
   handleNodeAction,
+  // 树的数据
   treeData,
+  // 当节点被选中
+  onSelect,
+  // 更新数据的状态
   loading,
   error,
   onRefresh,
 }: SearchTreeProps) {
   const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [autoExpandParent, setAutoExpandParent] = useState<boolean>(true);
+  const [autoExpandParent, setAutoExpandParent] = useState<boolean>(false);
   // 树节点展开渲染的回调
   const onExpand = (newExpandedKeys: Key[]) => {
     setExpandedKeys(newExpandedKeys);
@@ -134,24 +137,21 @@ export function SearchTree({
           ref={treeContainer}
           className="flex-grow overflow-hidden rounded-md"
         >
-          <OverlayScrollbarsComponent
-            className="w-full h-auto "
-            style={{ height: maxHeight > 0 ? maxHeight + "px" : "auto" }}
-          >
-            <Tree
-              className="p-4 bg-white !rounded-md"
-              onExpand={onExpand}
-              expandedKeys={expandedKeys}
-              autoExpandParent={autoExpandParent}
-              onSelect={(_, info) => {
-                const selectedNode = info.selectedNodes[0] as TreeNodeProps;
-                onSelect(selectedNode);
-              }}
-              treeData={treeData}
-              blockNode
-              titleRender={renderNodeTitle}
-            />
-          </OverlayScrollbarsComponent>
+          <Tree
+            // 这个32是padding...
+            height={maxHeight - 32 > 0 ? maxHeight - 32 : undefined}
+            className="p-4 bg-white !rounded-md"
+            onExpand={onExpand}
+            expandedKeys={expandedKeys}
+            autoExpandParent={autoExpandParent}
+            onSelect={(_, info) => {
+              const selectedNode = info.selectedNodes[0] as TreeNodeProps;
+              onSelect(selectedNode);
+            }}
+            treeData={treeData}
+            blockNode
+            titleRender={renderNodeTitle}
+          />
         </div>
       )}
     </div>
