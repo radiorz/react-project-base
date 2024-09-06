@@ -118,13 +118,17 @@ export function SearchTree({
   const { height: maxHeight } = useMaxHeight(treeContainer, 16, dimensions);
   // console.log(`maxHeight`, maxHeight);
   return (
-    <div>
-      <div className="flex gap-2 mb-4">
+    <div className="@container">
+      <div className={"flex gap-2 mb-4 flex-wrap @[300px]:flex-nowrap"}>
         <DebounceInput
           // searchText={searchValue}
           onSearch={onSearch}
         ></DebounceInput>
-        <Button icon={<ReloadOutlined />} onClick={onRefresh}>
+        <Button
+          icon={<ReloadOutlined />}
+          onClick={onRefresh}
+          className="w-full @[300px]:w-auto"
+        >
           刷新
         </Button>
       </div>
