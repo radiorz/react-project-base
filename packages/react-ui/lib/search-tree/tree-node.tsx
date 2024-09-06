@@ -17,22 +17,25 @@ export interface TreeNodeComponentProps {
 }
 
 export function useSearchTitle(title: string, searchValue: string) {
+  if (typeof title === "undefined" || title === "") {
+    return <span className="truncate">{title || "-"}</span>;
+  }
+  if (!searchValue) {
+    return <span className="truncate">{title || "-"}</span>;
+  }
   const index = title?.indexOf(searchValue || "");
-  let titleComp;
   if (typeof index !== "undefined" && index > -1) {
     const beforeStr = title?.substring(0, index);
     const afterStr = title?.substring(index + searchValue.length);
-    titleComp = (
-      <span>
+    return (
+      <span className="truncate">
         {beforeStr}
         <span className="text-red-500 bg-yellow-200">{searchValue}</span>
         {afterStr}
       </span>
     );
-  } else {
-    titleComp = <span>{title || "-"}</span>;
   }
-  return titleComp;
+  return <span className="truncate">{title || "-"}</span>;
 }
 
 export const TreeNode = ({
@@ -73,12 +76,12 @@ export const TreeNode = ({
     };
   });
   return (
-    <div className="flex items-center justify-between w-full group">
+    <div className="relative flex items-center justify-between group ">
       <div className="flex items-center gap-2">
         {icon}
         {title}
       </div>
-      <div className="items-center justify-center hidden gap-1 group-hover:flex">
+      <div className="absolute right-0 items-center justify-center hidden gap-1 group-hover:flex">
         {primaryActions.map(({ icon, name }, i) => (
           <Button
             key={i}
