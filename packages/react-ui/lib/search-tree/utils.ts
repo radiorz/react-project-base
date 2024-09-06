@@ -4,7 +4,6 @@ export const findExpandedKeysBySearchText = (
   treeData: any[] = [],
   searchText: string = ""
 ) => {
-  console.time("111")
   const expandedKeys: string[] = [];
 
   const traverseTree = (nodes: TreeNodeProps[]) => {
@@ -21,6 +20,5 @@ export const findExpandedKeysBySearchText = (
 
   traverseTree(treeData);
   const result =  [...new Set(expandedKeys)];
-  console.timeEnd('111')
   return result
 };
