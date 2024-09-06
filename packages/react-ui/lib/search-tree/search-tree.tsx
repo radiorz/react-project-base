@@ -23,22 +23,25 @@ export interface SearchTreeProps {
 // DebounceInput
 export interface DebounceInputProps {
   // searchText: string;
-  onSearch: (value: string) => void;
+  className?: string;
+  onSearch?: (value: string) => void;
 }
-export const DebounceInput = memo(({ onSearch }: DebounceInputProps) => {
-  const handleChange = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    onSearch(value);
-  }, 250);
-  return (
-    <Input
-      className="flex-grow"
-      placeholder="输入关键词查找节点..."
-      onChange={handleChange}
-      prefix={<SearchOutlined />}
-    />
-  );
-});
+export const DebounceInput = memo(
+  ({ className, onSearch }: DebounceInputProps) => {
+    const handleChange = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      onSearch?.(value);
+    }, 250);
+    return (
+      <Input
+        className={className}
+        placeholder="输入关键词查找节点..."
+        onChange={handleChange}
+        prefix={<SearchOutlined />}
+      />
+    );
+  }
+);
 
 export function Loading() {
   return (
@@ -122,11 +125,12 @@ export function SearchTree({
     <div className="@container">
       <div
         className={
-          "flex gap-2 mb-4 flex-wrap @[300px]:flex-nowrap justify-between @container"
+          "flex gap-2 mb-4 flex-wrap @[300px]:!flex-nowrap justify-between @container"
         }
       >
         <DebounceInput
           // searchText={searchValue}
+          className="!w-full flex-grow"
           onSearch={onSearch}
         ></DebounceInput>
         <Button

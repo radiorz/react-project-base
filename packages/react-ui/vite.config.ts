@@ -14,6 +14,7 @@ export default defineConfig({
     `),
   ],
   build: {
+    sourcemap: true,
     lib: {
       entry: "./lib/index.ts",
       name: toBigCamelCase(name),
