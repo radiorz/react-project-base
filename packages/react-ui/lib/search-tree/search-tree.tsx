@@ -130,7 +130,7 @@ export function SearchTree({
       >
         <DebounceInput
           // searchText={searchValue}
-          className="!w-full flex-grow"
+          className="!w-full flex-grow" // 本来不需要w-full的 但是不知道为什么在实际项目上就不起作用flex-grow。。。
           onSearch={onSearch}
         ></DebounceInput>
         <Button
