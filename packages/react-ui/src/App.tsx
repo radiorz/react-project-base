@@ -21,7 +21,7 @@ const treeeData = addKeyToNode(treeData);
 function App() {
   const [selectedKeys, setSelectedKeys] = useState([]);
   return (
-    <div className="overflow-hidden bg-slate-800">
+    <div className="overflow-hidden w-36 bg-slate-800">
       <TheTime></TheTime>
       <SearchTree
         selectedKeys={selectedKeys}

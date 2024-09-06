@@ -32,6 +32,7 @@ export const DebounceInput = memo(({ onSearch }: DebounceInputProps) => {
   }, 250);
   return (
     <Input
+      className="!w-full @[300px]:!w-auto"
       placeholder="输入关键词查找节点..."
       onChange={handleChange}
       prefix={<SearchOutlined />}
@@ -119,7 +120,7 @@ export function SearchTree({
   // console.log(`maxHeight`, maxHeight);
   return (
     <div className="@container">
-      <div className={"flex gap-2 mb-4 flex-wrap @[300px]:flex-nowrap"}>
+      <div className={"flex gap-2 mb-4 flex-wrap  justify-between @container"}>
         <DebounceInput
           // searchText={searchValue}
           onSearch={onSearch}
