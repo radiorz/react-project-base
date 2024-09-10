@@ -8,9 +8,9 @@
  * @todo
  *
  * @done 转换为 TypeScript
+ * 20240910 手机上使用
  * @example
  */
-
 import React, { useEffect, useRef, useState } from "react";
 import {
   CaretLeftOutlined,
@@ -50,23 +50,37 @@ const Sash: React.FC<SashProps> = ({
   const vec = useRef<Vector>({ x: 0, y: 0 });
 
   // 处理鼠标点击事件
-  function handleClick(
-    e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
-  ) {
-    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+  function handleClick(e: React.MouseEvent) {
+    e.preventDefault();
+    const clientX = e.clientX;
+    const clientY = e.clientY;
     vec.current = { x: clientX, y: clientY };
     isDrag.current = true;
   }
-
-  // 处理鼠标移动事件
-  function handleMouseMove(e: MouseEvent | TouchEvent) {
+  // 鼠标移动事件
+  function handleMouseMove(e: MouseEvent) {
     if (!isDrag.current) {
       return;
     }
     e.preventDefault();
-    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    const dis = { x: clientX - vec.current.x, y: clientY - vec.current.y };
+    onMove?.(dis);
+    vec.current = { x: clientX, y: clientY };
+  }
+  // 触屏点击
+  function handleTouchStart(e: TouchEvent) {
+    e.preventDefault();
+    const clientX = e.touches[0].clientX;
+    const clientY = e.touches[0].clientY;
+    vec.current = { x: clientX, y: clientY };
+  }
+  // 触屏移动
+  function handleTouchMove(e: TouchEvent) {
+    e.preventDefault();
+    const clientX = e.touches[0].clientX;
+    const clientY = e.touches[0].clientY;
     const dis = { x: clientX - vec.current.x, y: clientY - vec.current.y };
     onMove?.(dis);
     vec.current = { x: clientX, y: clientY };
@@ -108,9 +122,9 @@ const Sash: React.FC<SashProps> = ({
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onMouseDown={handleClick}
-      onTouchStart={handleClick}
-      onTouchMove={handleMouseMove as any}
-      onTouchEnd={setDragFalse}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      // onTouchEnd={handleTouchEnd}
     >
       {isHorizontal ? (
         <>

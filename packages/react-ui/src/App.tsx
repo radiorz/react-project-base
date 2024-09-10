@@ -1,8 +1,8 @@
 /**
  * @author
- * @file App.tsx
- * @fileBase App
- * @path projects\react-template\src\App.tsx
+ * @file index.jsx
+ * @fileBase Test
+ * @path src\pages\Test\index.jsx
  * @from
  * @desc
  * @todo
@@ -12,43 +12,21 @@
  * @example
  */
 
-// import "@tikkhun/react-ui/dist/style.css";
-import { TheTime, SearchTree } from "../lib";
-import { useState } from "react";
-import { treeData } from "./treeData";
-import { addKeyToNode } from "../lib";
-import { EditOutlined, PlusOutlined } from "@ant-design/icons";
-const treeeData = addKeyToNode(treeData);
-function App() {
-  const [selectedKeys, setSelectedKeys] = useState([]);
-  console.log(`selectedKeys`, selectedKeys);
+import { SashLayout, useWindowDimensions } from "../lib";
+
+function Test() {
+  const { height } = useWindowDimensions(); // const
   return (
-    <div className="overflow-hidden bg-slate-800">
-      <TheTime></TheTime>
-      <SearchTree
-        nodeActionsByKey={{
-          "0": [
-            { icon: <PlusOutlined />, name: "addChild", title: "添加子节点" },
-            { icon: <EditOutlined />, name: "update", title: "编辑节点" },
-          ],
-          "0-1": [],
-          "0-0": [
-            { icon: <PlusOutlined />, name: "addChild", title: "添加子节点" },
-            { icon: <EditOutlined />, name: "update", title: "编辑节点" },
-            { icon: <EditOutlined />, name: "update", title: "编辑节点" },
-            { icon: <EditOutlined />, name: "update", title: "编辑节点" },
-          ],
-        }}
-        selectedKeys={selectedKeys}
-        setSelectedKeys={setSelectedKeys}
-        renderIcon={() => <div>123</div>}
-        onSelect={() => {}}
-        handleNodeAction={(type, node) => console.log(type, node)}
-        onRefresh={() => {}}
-        treeData={treeeData}
-      ></SearchTree>
-    </div>
+    <SashLayout
+      direction="vertical"
+      defaultLengths={[height / 4, height / 4, height / 4, height / 4]}
+    >
+      <div className="w-full h-full bg-red-400"></div>
+      <div className="w-full h-full bg-green-400"></div>
+      <div className="w-full h-full bg-orange-400"></div>
+      <div className="w-full h-full bg-blue-400"></div>
+    </SashLayout>
   );
 }
 
-export default App;
+export default Test;

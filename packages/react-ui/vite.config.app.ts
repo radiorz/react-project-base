@@ -6,6 +6,9 @@ import { fileURLToPath, URL } from "node:url";
 
 const name = packageJson.name.split("/")[1];
 export default defineConfig({
+  server: {
+    host: "0.0.0.0",
+  },
   plugins: [react()],
   build: {
     lib: {
