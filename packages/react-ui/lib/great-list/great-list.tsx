@@ -15,7 +15,7 @@
 
 import { InlineActionGroup, type Action } from "../action-group";
 interface Props {
-  title?: 
+  title?: string;
   actions?: Action[];
   handleAction?: Function;
 }

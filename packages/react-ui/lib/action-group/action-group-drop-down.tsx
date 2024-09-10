@@ -31,14 +31,19 @@ export const ActionGroupDropDown: React.FC<ActionGroupMenuProps> = ({
   open,
   setOpen,
 }) => {
-  function _handleAction(item: Action) {
+  function _handleAction(
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    item: Action
+  ) {
+    e.stopPropagation();
     handleAction?.(item.name);
+    setOpen(false);
   }
   const items = actions.map((item, i) => {
     return {
       key: i,
       label: (
-        <div onClick={(e) => _handleAction(item)}>
+        <div onClick={(e) => _handleAction(e, item)}>
           {item?.icon} {item?.title}
         </div>
       ),

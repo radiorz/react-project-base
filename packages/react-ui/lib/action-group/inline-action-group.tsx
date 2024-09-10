@@ -11,11 +11,10 @@
  * @done
  * @example
  */
-import { MenuOutlined } from "@ant-design/icons";
-import { Button, Dropdown } from "antd";
-import { useState, useMemo } from "react";
-import { type Action } from "./action-group.interface";
+import { Button } from "antd";
+import { useMemo, useState } from "react";
 import { ActionGroupDropDown } from "./action-group-drop-down";
+import { type Action } from "./action-group.interface";
 interface InlineHoverActionProps {
   // value: propTypes.any
   className?: string;
@@ -36,7 +35,6 @@ export function InlineActionGroup({
   ) {
     e.stopPropagation();
     handleAction?.(type);
-    setOpen(false);
   }
   // Split actions
   const primaryActions = useMemo(
