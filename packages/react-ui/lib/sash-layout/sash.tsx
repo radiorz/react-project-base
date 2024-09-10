@@ -11,13 +11,13 @@
  * 20240910 手机上使用
  * @example
  */
-import React, { useEffect, useRef, useState } from "react";
 import {
+  CaretDownOutlined,
   CaretLeftOutlined,
   CaretRightOutlined,
   CaretUpOutlined,
-  CaretDownOutlined,
 } from "@ant-design/icons";
+import React, { useEffect, useRef, useState } from "react";
 import { DirectionMap } from "./utils";
 
 // 定义 Sash 组件的属性接口
@@ -70,14 +70,14 @@ const Sash: React.FC<SashProps> = ({
     vec.current = { x: clientX, y: clientY };
   }
   // 触屏点击
-  function handleTouchStart(e: TouchEvent) {
+  function handleTouchStart(e: React.TouchEvent) {
     e.preventDefault();
     const clientX = e.touches[0].clientX;
     const clientY = e.touches[0].clientY;
     vec.current = { x: clientX, y: clientY };
   }
   // 触屏移动
-  function handleTouchMove(e: TouchEvent) {
+  function handleTouchMove(e: React.TouchEvent) {
     e.preventDefault();
     const clientX = e.touches[0].clientX;
     const clientY = e.touches[0].clientY;
@@ -103,8 +103,10 @@ const Sash: React.FC<SashProps> = ({
   // 添加和移除鼠标抬起事件监听器
   useEffect(() => {
     window.addEventListener("mouseup", setDragFalse);
+    window.addEventListener("mouseleave", setDragFalse);
     return () => {
-      window.removeEventListener("mouseup", setDragFalse);
+      window.addEventListener("mouseup", setDragFalse);
+      window.removeEventListener("mouseleave", setDragFalse);
     };
   }, []);
 
