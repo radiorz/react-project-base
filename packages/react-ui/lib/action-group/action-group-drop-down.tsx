@@ -12,13 +12,13 @@
  * @example
  */
 
-import { Button, Dropdown } from "antd";
-import { type Action } from "./action-group.interface";
 import { MenuOutlined } from "@ant-design/icons";
-interface ActionGroupMenuProps {
+import { Button, Dropdown } from "antd";
+import { type Action, type ActionHandler } from "./action-group.interface";
+export interface ActionGroupMenuProps {
   className?: string;
   actions: Action[];
-  handleAction?: Function;
+  handleAction?: ActionHandler;
   children?: any;
   open: boolean;
   setOpen: any;

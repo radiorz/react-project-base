@@ -14,14 +14,15 @@
 import { Button } from "antd";
 import { useMemo, useState } from "react";
 import { ActionGroupDropDown } from "./action-group-drop-down";
-import { type Action } from "./action-group.interface";
-interface InlineHoverActionProps {
+import { type ActionHandler, type Action } from "./action-group.interface";
+export interface InlineHoverActionProps {
   // value: propTypes.any
   className?: string;
   actions: Action[];
   primaryActionCount?: number;
-  handleAction?: Function;
+  handleAction?: ActionHandler;
 }
+
 export function InlineActionGroup({
   className = "",
   actions = [],

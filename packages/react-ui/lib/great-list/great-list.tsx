@@ -13,11 +13,15 @@
  * @example
  */
 
-import { InlineActionGroup, type Action } from "../action-group";
+import {
+  InlineActionGroup,
+  type Action,
+  type ActionHandler,
+} from "../action-group";
 interface Props {
   title?: string;
   actions?: Action[];
-  handleAction?: Function;
+  handleAction?: ActionHandler;
 }
 export function GreatList({ title, actions = [], handleAction }: Props) {
   return (
