@@ -2,18 +2,22 @@ import { ReloadOutlined, SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Spin, Tree } from "antd";
 import { debounce } from "lodash-es";
 import { Key, memo, useCallback, useRef, useState } from "react";
+import { Action } from "../action-group/action-group.interface";
 import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
+import { TreeNodeProps } from "./search-tree.interface";
 import { TreeNode } from "./tree-node";
-const MemorizedTreeNode = memo(TreeNode);
-import { NodeAction, TreeNodeProps } from "./search-tree.interface";
 import { findExpandedKeysBySearchText } from "./utils";
+const MemorizedTreeNode = memo(TreeNode);
 export interface SearchTreeProps {
   selectedKeys?: string[];
   setSelectedKeys?: Function;
+  nodeActionsByKey?: {
+    [key: string]: Action[];
+  };
   renderIcon?: (item: any) => JSX.Element;
   onSelect: (selectedNode: TreeNodeProps) => void;
-  nodeActions?: NodeAction[];
+  nodeActions?: Action[];
   handleNodeAction: (type: string, node: TreeNodeProps) => void;
   onRefresh: () => void;
   treeData?: TreeNodeProps[];
@@ -69,6 +73,7 @@ export function SearchTree({
   setSelectedKeys,
   // 树节点相关
   renderIcon,
+  nodeActionsByKey,
   nodeActions,
   handleNodeAction,
   // 树的数据
@@ -105,9 +110,11 @@ export function SearchTree({
   );
   // 处理树节点渲染
   const renderNodeTitle = (item: TreeNodeProps) => {
+    // 某些特殊的节点需要设置不同的nodeActions
+    const _nodeActions = nodeActionsByKey?.[item?.key || ""] || nodeActions;
     return (
       <MemorizedTreeNode
-        nodeActions={nodeActions}
+        nodeActions={_nodeActions}
         handleNodeAction={handleNodeAction}
         renderIcon={renderIcon}
         item={item}

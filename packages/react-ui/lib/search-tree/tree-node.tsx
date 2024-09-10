@@ -1,18 +1,11 @@
-import {
-  DeleteOutlined,
-  EditOutlined,
-  MenuOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
-import { Button, Dropdown } from "antd";
-import React, { useState } from "react";
-import { type NodeAction } from "./search-tree.interface";
+import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { InlineActionGroup, type Action } from "../action-group";
 
 export interface TreeNodeComponentProps {
   item: any;
   renderIcon?: Function;
   searchValue: string;
-  nodeActions?: NodeAction[];
+  nodeActions?: Action[];
   handleNodeAction?: Function;
 }
 
@@ -37,70 +30,36 @@ export function useSearchTitle(title: string, searchValue: string) {
   }
   return <span className="truncate">{title || "-"}</span>;
 }
+export const DEFAULT_TREE_NODE_ACTIONS = [
+  { icon: <PlusOutlined />, name: "addChild", title: "添加子节点" },
+  { icon: <EditOutlined />, name: "update", title: "编辑节点" },
+  { icon: <DeleteOutlined />, name: "delete", title: "删除节点" },
+];
 
 export const TreeNode = ({
   item,
   renderIcon,
   searchValue,
-  nodeActions = [
-    { icon: <PlusOutlined />, name: "addChild", title: "添加子节点" },
-    { icon: <EditOutlined />, name: "update", title: "编辑节点" },
-    { icon: <DeleteOutlined />, name: "delete", title: "删除节点" },
-  ],
+  nodeActions = DEFAULT_TREE_NODE_ACTIONS,
   handleNodeAction,
 }: TreeNodeComponentProps) => {
   const title = useSearchTitle(item?.title, searchValue);
   const icon = renderIcon?.(item);
-  const [open, setOpen] = useState(false);
-  function _handleNodeAction(
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    type: string
-  ) {
-    e.stopPropagation();
-    handleNodeAction?.(type, item);
-    setOpen(false);
-  }
 
-  // Split actions
-  const primaryActions = nodeActions.slice(0, 3);
-  // console.log(primaryActions);
-  const overflowActions = nodeActions.slice(3);
-  const overflowActionItems = overflowActions.map((item, i) => {
-    return {
-      key: i,
-      label: (
-        <div onClick={(e) => _handleNodeAction(e, item.name)}>
-          {item.icon} {item.title}
-        </div>
-      ),
-    };
-  });
+  function _handleNodeAction(type: string) {
+    handleNodeAction?.(type, item);
+  }
   return (
     <div className="relative flex items-center justify-between group ">
       <div className="flex items-center gap-2">
         {icon}
         {title}
       </div>
-      <div className="absolute right-0 items-center justify-center hidden gap-1 group-hover:flex">
-        {primaryActions.map(({ icon, name }, i) => (
-          <Button
-            key={i}
-            icon={icon}
-            size="small"
-            onClick={(e) => _handleNodeAction(e, name)}
-          />
-        ))}
-        {/* 更多选项藏在这里头 */}
-        {overflowActions.length > 0 && (
-          <Dropdown
-            open={open}
-            onOpenChange={(open) => setOpen(open)}
-            menu={{ items: overflowActionItems }}
-          >
-            <Button icon={<MenuOutlined />} size="small" />
-          </Dropdown>
-        )}
-      </div>
+      <InlineActionGroup
+        className="absolute right-0 hidden group-hover:flex"
+        actions={nodeActions}
+        handleAction={_handleNodeAction}
+      ></InlineActionGroup>
     </div>
   );
 };
