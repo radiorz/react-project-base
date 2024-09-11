@@ -1,8 +1,8 @@
 /**
  * @author
- * @file index.jsx
- * @fileBase Test
- * @path src\pages\Test\index.jsx
+ * @file App.tsx
+ * @fileBase App
+ * @path packages\react-ui\src\App.tsx
  * @from
  * @desc
  * @todo
@@ -12,21 +12,13 @@
  * @example
  */
 
-import { SashLayout, useWindowDimensions } from "../lib";
-
-function Test() {
-  const { height } = useWindowDimensions(); // const
-  return (
-    <SashLayout
-      direction="vertical"
-      defaultLengths={[height / 4, height / 4, height / 4, height / 4]}
-    >
-      <div className="w-full h-full bg-red-400"></div>
-      <div className="w-full h-full bg-green-400"></div>
-      <div className="w-full h-full bg-orange-400"></div>
-      <div className="w-full h-full bg-blue-400"></div>
-    </SashLayout>
-  );
+import { useState, useEffect, memo } from "react";
+import TestTree from "./TestTree";
+interface Props {
+  // value: propTypes.any
+}
+function App() {
+  return <TestTree />;
 }
 
-export default Test;
+export default App;

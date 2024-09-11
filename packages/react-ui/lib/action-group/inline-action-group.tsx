@@ -50,8 +50,9 @@ export function InlineActionGroup({
 
   return (
     <div className={`flex items-center justify-center gap-1 ${className}`}>
-      {primaryActions.map(({ icon, name }, i) => (
+      {primaryActions.map(({ icon, name, title }, i) => (
         <Button
+          title={title}
           key={i}
           icon={icon}
           size="small"
