@@ -23,6 +23,8 @@ export interface SearchTreeProps {
   treeData?: TreeNodeProps[];
   loading?: boolean;
   error?: any;
+  footHeight?: number;
+  [props: string]: any; // 这里是tree的props
 }
 // DebounceInput
 export interface DebounceInputProps {
@@ -84,6 +86,8 @@ export function SearchTree({
   loading,
   error,
   onRefresh,
+  footHeight = 16, // 距离底部
+  ...props
 }: SearchTreeProps) {
   const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -126,7 +130,11 @@ export function SearchTree({
   const treeContainer = useRef(null);
   const { dimensions } = useResizeObserver(treeContainer);
   // 底部漏出16
-  const { height: maxHeight } = useMaxHeight(treeContainer, 16, dimensions);
+  const { height: maxHeight } = useMaxHeight(
+    treeContainer,
+    footHeight,
+    dimensions
+  );
   // console.log(`maxHeight`, maxHeight);
   return (
     <div className="@container">
@@ -160,6 +168,7 @@ export function SearchTree({
           className="flex-grow overflow-hidden rounded-md"
         >
           <Tree
+            {...props} // 更多属性直接放这里让你直接
             selectedKeys={selectedKeys}
             // 这个32是padding...
             height={maxHeight - 32 > 0 ? maxHeight - 32 : undefined}
