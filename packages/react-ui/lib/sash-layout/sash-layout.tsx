@@ -21,6 +21,7 @@ export interface SashLayoutProps {
   children: ReactNode | ReactNode[];
   defaultLengths?: number[];
   direction?: "horizontal" | "vertical";
+  childLengthZeroBehavior?: "hidden" | "remove";
 }
 
 // Define the type for the length state
@@ -31,6 +32,7 @@ export const SashLayout: React.FC<SashLayoutProps> = ({
   children,
   defaultLengths = [],
   direction = DirectionMap.horizontal,
+  childLengthZeroBehavior = "hidden",
 }) => {
   // State to hold the lengths of each section
   const [lengths, setLengths] = useState<Lengths>(defaultLengths);
@@ -102,15 +104,22 @@ export const SashLayout: React.FC<SashLayoutProps> = ({
     }
 
     // Map items to divs with appropriate sizes
-    const _items = items.map((item, i) => (
-      <div
-        key={i}
-        style={{ [isHorizontal ? "width" : "height"]: `${lengths[i]}px` }}
-      >
-        {/* Render the item only if its length is truthy */}
-        {!!lengths?.[i] && item}
-      </div>
-    ));
+    const _items = items.map((item, i) => {
+      const shouldHidden =
+        childLengthZeroBehavior === "hidden" && !lengths?.[i];
+      const shouldRemove =
+        childLengthZeroBehavior === "remove" && !lengths?.[i];
+      return (
+        <div
+          key={i}
+          className={shouldHidden ? "hidden" : ""}
+          style={{ [isHorizontal ? "width" : "height"]: `${lengths?.[i]}px` }}
+        >
+          {/* Render the item only if its length is truthy */}
+          {!shouldRemove && item}
+        </div>
+      );
+    });
 
     // Combine items and separators
     return _items.reduce<ReactNode[]>((acc, cur, index) => {
