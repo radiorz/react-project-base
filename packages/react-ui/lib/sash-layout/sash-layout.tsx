@@ -14,6 +14,7 @@
 import React, { useState, ReactNode, useEffect } from "react";
 import Sash from "./sash";
 import { DirectionMap, checkPositive } from "./utils";
+// import { debounce } from "lodash-es";
 
 // Define the prop types for the SashLayout component
 export interface SashLayoutProps {
@@ -34,13 +35,20 @@ export const SashLayout: React.FC<SashLayoutProps> = ({
   direction = DirectionMap.horizontal,
   childLengthZeroBehavior = "hidden",
 }) => {
+  const childArray = Array.isArray(children) ? children : [children];
+  const getLengths = () => {
+    // 这里应该排除一下折叠的,0的不能再跳出来.
+    return childArray.map((_, i) => {
+      return defaultLengths[i] || 0;
+    });
+  };
   // State to hold the lengths of each section
-  const [lengths, setLengths] = useState<Lengths>(defaultLengths);
+  const [lengths, setLengths] = useState<Lengths>(getLengths());
+
   // 当宽度改变时更新
   useEffect(() => {
-    // 这里应该排除一下折叠的,0的不能再跳出来.
-    setLengths(defaultLengths);
-  }, [defaultLengths]);
+    setLengths(getLengths());
+  }, [defaultLengths, childArray.length]);
   // Determine if the SashLayout is horizontal
   const isHorizontal = direction === DirectionMap.horizontal;
 
@@ -128,8 +136,7 @@ export const SashLayout: React.FC<SashLayoutProps> = ({
   }
 
   // Ensure children is always an array
-  const items = Array.isArray(children) ? children : [children];
-  const showItems = setSash(items);
+  const showItems = setSash(childArray);
 
   // Determine the flex direction class
   const theClass = isHorizontal ? "flex-row" : "flex-col";

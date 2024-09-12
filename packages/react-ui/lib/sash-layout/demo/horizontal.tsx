@@ -17,11 +17,10 @@ import { useWindowDimensions } from "../../window-dimensions";
 
 function Test() {
   const { width } = useWindowDimensions(); // const
+  const defaultLengths = [width / 4, width / 4, width / 4, width / 4];
+  console.log(`defaultLengths`, defaultLengths);
   return (
-    <SashLayout
-      className="w-screen h-screen"
-      defaultLengths={[width / 4, width / 4, width / 4, width / 4]}
-    >
+    <SashLayout className="w-screen h-screen" defaultLengths={defaultLengths}>
       <div className="w-full h-full bg-red-400"></div>
       <div className="w-full h-full bg-green-400"></div>
       <div className="w-full h-full bg-orange-400"></div>
