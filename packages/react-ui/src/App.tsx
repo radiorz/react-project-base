@@ -13,12 +13,14 @@
  */
 
 import { useState, useEffect, memo } from "react";
-import TestTree from "./TestTree";
+// import TestTree from "./TestTree";
+import Horizontal from "../lib/sash-layout/demo/horizontal";
 interface Props {
   // value: propTypes.any
 }
 function App() {
-  return <TestTree />;
+  return <Horizontal></Horizontal>;
+  // return <TestTree />;
 }
 
 export default App;

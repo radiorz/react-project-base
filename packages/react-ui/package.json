@@ -1,6 +1,6 @@
 {
   "name": "@tikkhun/react-ui",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "type": "module",
   "main": "dist/react-ui.js",
   "module": "dist/react-ui.umd.cjs",

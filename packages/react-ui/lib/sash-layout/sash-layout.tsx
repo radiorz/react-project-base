@@ -11,7 +11,7 @@
  * @example
  */
 
-import React, { useState, ReactNode } from "react";
+import React, { useState, ReactNode, useEffect } from "react";
 import Sash from "./sash";
 import { DirectionMap, checkPositive } from "./utils";
 
@@ -34,7 +34,11 @@ export const SashLayout: React.FC<SashLayoutProps> = ({
 }) => {
   // State to hold the lengths of each section
   const [lengths, setLengths] = useState<Lengths>(defaultLengths);
-
+  // 当宽度改变时更新
+  useEffect(() => {
+    // 这里应该排除一下折叠的,0的不能再跳出来.
+    setLengths(defaultLengths);
+  }, [defaultLengths]);
   // Determine if the SashLayout is horizontal
   const isHorizontal = direction === DirectionMap.horizontal;
 
