@@ -21,7 +21,7 @@ export interface SashLayoutProps {
   children: ReactNode | ReactNode[];
   defaultLengths?: number[];
   direction?: "horizontal" | "vertical";
-  childLengthZeroBehavior?: "hidden" | "remove";
+  childLengthZeroBehavior?: "hidden" | "destroy";
 }
 
 // Define the type for the length state
@@ -107,8 +107,8 @@ export const SashLayout: React.FC<SashLayoutProps> = ({
     const _items = items.map((item, i) => {
       const shouldHidden =
         childLengthZeroBehavior === "hidden" && !lengths?.[i];
-      const shouldRemove =
-        childLengthZeroBehavior === "remove" && !lengths?.[i];
+      const shouldDestroy =
+        childLengthZeroBehavior === "destroy" && !lengths?.[i];
       return (
         <div
           key={i}
@@ -116,7 +116,7 @@ export const SashLayout: React.FC<SashLayoutProps> = ({
           style={{ [isHorizontal ? "width" : "height"]: `${lengths?.[i]}px` }}
         >
           {/* Render the item only if its length is truthy */}
-          {!shouldRemove && item}
+          {!shouldDestroy && item}
         </div>
       );
     });
