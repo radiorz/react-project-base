@@ -21,19 +21,12 @@
  */
 
 import { ReactNode } from "react";
-import {
-  InlineActionGroup,
-  type Action,
-  type ActionHandler,
-} from "../action-group";
+import { ActionGroupBar, type ActionGroupBarProps } from "../action-group";
 interface RenderItemProps {
   item: any[];
   index: number;
 }
-interface TheListProps {
-  renderTitle?: () => ReactNode;
-  actions?: Action[];
-  handleAction?: ActionHandler;
+export interface TheListProps extends Omit<ActionGroupBarProps, "className"> {
   items: any[];
   renderItem: (props: RenderItemProps) => ReactNode;
 }
@@ -41,20 +34,19 @@ export function TheList({
   renderTitle,
   actions = [],
   handleAction,
+  primaryActionCount,
   items,
   renderItem,
 }: TheListProps) {
   return (
     <div className="flex flex-col w-full h-full">
       {/* 上边栏 */}
-      <div className="flex flex-row items-center justify-between p-2">
-        {renderTitle?.()}
-        <div className="flex-grow"></div>
-        <InlineActionGroup
-          actions={actions}
-          handleAction={handleAction}
-        ></InlineActionGroup>
-      </div>
+      <ActionGroupBar
+        renderTitle={renderTitle}
+        primaryActionCount={primaryActionCount}
+        actions={actions}
+        handleAction={handleAction}
+      ></ActionGroupBar>
       {/* 下边list */}
       <div className="flex-grow overflow-y-scroll bg-gray-200">
         {/* // 这里需要滚动 */}

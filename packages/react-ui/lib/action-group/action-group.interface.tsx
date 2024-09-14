@@ -3,4 +3,4 @@ export interface Action {
   name: string;
   title?: string;
 }
-export type ActionHandler = (type: string) => void;
+export type ActionHandler = (actionType: string) => void;

@@ -1,7 +1,7 @@
 import { ReloadOutlined, SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Spin, Tree } from "antd";
 import { debounce } from "lodash-es";
-import { Key, memo, useCallback, useRef, useState } from "react";
+import { Key, memo, ReactNode, useCallback, useRef, useState } from "react";
 import { Action } from "../action-group/action-group.interface";
 import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
@@ -15,7 +15,7 @@ export interface SearchTreeProps {
   nodeActionsByKey?: {
     [key: string]: Action[];
   };
-  renderIcon?: (item: any) => JSX.Element;
+  renderIcon?: (item: any) => ReactNode;
   onSelect: (selectedNode: TreeNodeProps) => void;
   nodeActions?: Action[];
   handleNodeAction: (type: string, node: TreeNodeProps) => void;

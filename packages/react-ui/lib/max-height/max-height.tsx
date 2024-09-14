@@ -11,11 +11,11 @@
  * @done
  * @example
  */
-import { useRef } from "react";
+import { ReactNode, useRef } from "react";
 import { useMaxHeight } from "./useMaxHeight";
 export interface MaxHeightProps {
   footerHeight?: number;
-  children: (height: number) => React.JSX.Element;
+  children: (height: number) => ReactNode;
 }
 // 用来解决剩余高度问题
 export function MaxHeight(props: MaxHeightProps) {

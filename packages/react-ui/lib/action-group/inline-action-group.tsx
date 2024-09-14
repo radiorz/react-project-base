@@ -15,7 +15,7 @@ import { Button } from "antd";
 import { useMemo, useState } from "react";
 import { ActionGroupDropDown } from "./action-group-drop-down";
 import { type ActionHandler, type Action } from "./action-group.interface";
-export interface InlineHoverActionProps {
+export interface InlineActionGroupProps {
   // value: propTypes.any
   className?: string;
   actions: Action[];
@@ -28,7 +28,7 @@ export function InlineActionGroup({
   actions = [],
   primaryActionCount = 3,
   handleAction,
-}: InlineHoverActionProps) {
+}: InlineActionGroupProps) {
   const [open, setOpen] = useState(false);
   function _handleAction(
     e: React.MouseEvent<HTMLElement, MouseEvent>,
