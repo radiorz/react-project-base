@@ -23,7 +23,7 @@ interface Props {
   // value: propTypes.any
 }
 function App() {
-  <SandwichCardDemo></SandwichCardDemo>;
+  return <SandwichCardDemo></SandwichCardDemo>;
   // return <SashDemo></SashDemo>;
   // return <TheListDemo></TheListDemo>;
   // return <Horizontal></Horizontal>;

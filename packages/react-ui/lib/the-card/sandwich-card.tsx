@@ -24,10 +24,10 @@ export const SandwichCard: React.FC<SandwichCardProps> = ({
 }) => {
   return (
     <div
-      className={`flex flex-col transition-shadow duration-300 rounded hover:shadow-lg ${className}`}
+      className={`flex flex-col transition-shadow duration-300 rounded hover:shadow-lg overflow-hidden ${className}`}
     >
-      <ActionGroupBar {...barProps} className="w-full" />
-      <div className="flex-grow w-full">{children}</div>
+      <ActionGroupBar {...barProps} />
+      <div className="flex-grow">{children}</div>
       {footer}
     </div>
   );
