@@ -2,7 +2,7 @@
 import "./index.css";
 export * from "./action-group";
 export * from "./full-screen";
-export * from "./great-list";
+export * from "./the-list";
 export * from "./image-size";
 export * from "./max-height";
 export * from "./resize";

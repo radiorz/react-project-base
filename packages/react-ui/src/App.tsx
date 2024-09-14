@@ -15,11 +15,14 @@
 import { useState, useEffect, memo } from "react";
 // import TestTree from "./TestTree";
 import Horizontal from "../lib/sash-layout/demo/horizontal";
+import TheListDemo from "../lib/the-list/demo";
+import "../lib/index.css";
 interface Props {
   // value: propTypes.any
 }
 function App() {
-  return <Horizontal></Horizontal>;
+  return <TheListDemo></TheListDemo>;
+  // return <Horizontal></Horizontal>;
   // return <TestTree />;
 }
 
