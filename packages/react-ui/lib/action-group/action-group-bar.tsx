@@ -12,16 +12,16 @@ import { ReactNode } from "react";
 import { InlineActionGroup, InlineActionGroupProps } from ".";
 export interface ActionGroupBarProps
   extends Omit<InlineActionGroupProps, "className"> {
+  className?: string;
   // value: propTypes.any
   renderTitle?: () => ReactNode;
-  className?: string;
 }
 export const ActionGroupBar: React.FC<ActionGroupBarProps> = ({
+  className = "",
   renderTitle,
   actions,
   handleAction,
   primaryActionCount,
-  className = "",
 }) => {
   return (
     <div

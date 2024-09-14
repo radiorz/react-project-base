@@ -18,7 +18,7 @@ import { type ActionHandler, type Action } from "./action-group.interface";
 export interface InlineActionGroupProps {
   // value: propTypes.any
   className?: string;
-  actions: Action[];
+  actions?: Action[];
   primaryActionCount?: number;
   handleAction?: ActionHandler;
 }
