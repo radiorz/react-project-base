@@ -43,7 +43,7 @@ export function MultiModeList({
   actions = [],
   handleAction,
   headers,
-  mode,
+  mode = "list",
   items,
   renderItem,
 }: MultiModeListProps) {

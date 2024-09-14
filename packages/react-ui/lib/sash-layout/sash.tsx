@@ -18,8 +18,8 @@ import {
   CaretUpOutlined,
 } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
+import styles from "./sash.module.css";
 import { DirectionMap } from "./utils";
-
 // 定义 Sash 组件的属性接口
 interface SashProps {
   className?: string;
@@ -120,7 +120,7 @@ const Sash: React.FC<SashProps> = ({
 
   return (
     <div
-      className={`flex justify-center items-center bg-gray-200 ${isHoverClassName} ${className} ${sashClassName}`}
+      className={`flex gap-1 justify-center items-center bg-gray-200 active:bg-blue-200 ${isHoverClassName} ${className} ${sashClassName}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onMouseDown={handleClick}
@@ -130,13 +130,37 @@ const Sash: React.FC<SashProps> = ({
     >
       {isHorizontal ? (
         <>
-          <CaretLeftOutlined onClick={onFrontClick} />
-          <CaretRightOutlined onClick={onEndClick} />
+          <div
+            className={styles.collapseButton}
+            title="左侧折叠"
+            onClick={onFrontClick}
+          >
+            <CaretLeftOutlined />
+          </div>
+          <div
+            className={styles.collapseButton}
+            title="右侧折叠"
+            onClick={onEndClick}
+          >
+            <CaretRightOutlined />
+          </div>
         </>
       ) : (
         <>
-          <CaretUpOutlined onClick={onFrontClick} />
-          <CaretDownOutlined onClick={onEndClick} />
+          <div
+            className={styles.collapseButton}
+            title="上侧折叠"
+            onClick={onFrontClick}
+          >
+            <CaretUpOutlined />
+          </div>
+          <div
+            className={styles.collapseButton}
+            title="下侧折叠"
+            onClick={onEndClick}
+          >
+            <CaretDownOutlined />
+          </div>
         </>
       )}
     </div>

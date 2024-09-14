@@ -8,7 +8,6 @@
  * @example
  */
 
-import { useState, useEffect, memo } from "react";
 interface Props {
   // value: propTypes.any
 }
