@@ -13,10 +13,10 @@
  * # TODO
  * item 排序 根据item的某个value进行排序（直接传入排序函数即可）
  * item 过滤 根据item的value进行过滤
- * 大中小的显示(响应式设计)
- * -
+ * - 资源排序
  * # DONE
  * ## 20240914 星期六
+ * 大中小的显示(响应式设计) 这个直接使用tailwind 的container queries语法即可
  * # FUTURE
  */
 

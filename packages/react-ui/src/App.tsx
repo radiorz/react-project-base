@@ -12,14 +12,11 @@
  * @example
  */
 
-import React, { useState, useEffect, memo } from "react";
+import React from "react";
 // import TestTree from "./TestTree";
-import Horizontal from "../lib/sash-layout/demo/horizontal";
-import TheListDemo from "../lib/the-list/demo";
 import "../lib/index.css";
-import SashDemo from "../lib/sash-layout/demo/SashDemo";
 import { SandwichCardDemo } from "../lib/the-card/sandwich-card.demo";
-interface Props {
+interface AppProps {
   // value: propTypes.any
 }
 function App() {
