@@ -25,11 +25,13 @@ export default defineConfig({
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
+          antd: "antd",
         },
       },
       external: [
         "react",
         "react-dom" /* , "react-router", "react-router-dom" */,
+        "antd",
       ],
     },
   },
