@@ -55,6 +55,7 @@ export function InlineActionGroup({
           title={title}
           key={i}
           icon={icon}
+          value={!icon ? title : undefined}
           size="small"
           onClick={(e) => _handleAction(e, name)}
         />
