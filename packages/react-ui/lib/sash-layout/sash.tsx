@@ -115,12 +115,12 @@ const Sash: React.FC<SashProps> = ({
     direction === DirectionMap.horizontal
       ? "w-4 h-full cursor-col-resize flex-col"
       : "h-4 w-full cursor-row-resize flex-row";
-  const isHoverClassName = isHover ? "bg-blue-100" : "";
+  const isHoverClassName = isHover ? "bg-blue-100 dark:bg-blue-900" : "";
   const isHorizontal = direction === DirectionMap.horizontal;
 
   return (
     <div
-      className={`flex gap-1 justify-center items-center bg-gray-200 active:bg-blue-200 ${isHoverClassName} ${className} ${sashClassName}`}
+      className={`flex gap-1 justify-center items-center bg-gray-200 dark:bg-gray-800 active:bg-blue-200 dark:active:bg-blue-800 ${isHoverClassName} ${className} ${sashClassName}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onMouseDown={handleClick}

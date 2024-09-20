@@ -48,7 +48,7 @@ export function TheList({
         handleAction={handleAction}
       ></ActionGroupBar>
       {/* 下边list */}
-      <div className="flex-grow overflow-y-auto bg-gray-200">
+      <div className="flex-grow overflow-y-auto bg-gray-200 dark:bg-gray-800">
         {/* // 这里需要滚动 */}
         <div className="flex flex-wrap w-full @container justify-start">
           {/* // 这里要做虚拟列表 */}

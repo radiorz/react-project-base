@@ -23,7 +23,9 @@ export function useSearchTitle(title: string, searchValue: string) {
     return (
       <span className="truncate">
         {beforeStr}
-        <span className="text-red-500 bg-yellow-200">{searchValue}</span>
+        <span className="text-red-500 bg-yellow-200 dark:text-red-600 dark:bg-yellow-700">
+          {searchValue}
+        </span>
         {afterStr}
       </span>
     );

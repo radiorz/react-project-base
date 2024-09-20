@@ -17,7 +17,7 @@ export const SandwichCardDemo: React.FC<SandwichCardDemoProps> = () => {
     <div className="flex items-center justify-center w-screen h-screen">
       <SandwichCard
         barProps={{
-          className: "bg-red-300",
+          className: "bg-red-300 dark:bg-red-700",
           renderTitle() {
             return <div>123</div>;
           },

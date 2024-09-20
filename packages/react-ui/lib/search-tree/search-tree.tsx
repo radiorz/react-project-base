@@ -172,7 +172,7 @@ export function SearchTree({
             selectedKeys={selectedKeys}
             // 这个32是padding...
             height={maxHeight - 32 > 0 ? maxHeight - 32 : undefined}
-            className="p-4 bg-white !rounded-md"
+            className="p-4 bg-white dark:bg-black !rounded-md"
             onExpand={onExpand}
             expandedKeys={expandedKeys}
             autoExpandParent={autoExpandParent}
