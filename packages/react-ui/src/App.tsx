@@ -16,12 +16,13 @@ import React from "react";
 // import TestTree from "./TestTree";
 import "../lib/index.css";
 import { SandwichCardDemo } from "../lib/the-card/sandwich-card.demo";
+import SashDemo from "../lib/sash-layout/sash.demo";
 interface AppProps {
   // value: propTypes.any
 }
 function App() {
-  return <SandwichCardDemo></SandwichCardDemo>;
-  // return <SashDemo></SashDemo>;
+  // return <SandwichCardDemo></SandwichCardDemo>;
+  return <SashDemo></SashDemo>;
   // return <TheListDemo></TheListDemo>;
   // return <Horizontal></Horizontal>;
   // return <TestTree />;

@@ -117,10 +117,17 @@ const Sash: React.FC<SashProps> = ({
       : "h-4 w-full cursor-row-resize flex-row";
   const isHoverClassName = isHover ? "bg-blue-100 dark:bg-blue-900" : "";
   const isHorizontal = direction === DirectionMap.horizontal;
-
+  function handleFrontClick(e: React.MouseEvent) {
+    e.preventDefault();
+    onFrontClick?.();
+  }
+  function handleEndClick(e: React.MouseEvent) {
+    e.preventDefault();
+    onEndClick?.();
+  }
   return (
     <div
-      className={`flex gap-1 justify-center items-center bg-gray-200 dark:bg-gray-800 active:bg-blue-200 dark:active:bg-blue-800 ${isHoverClassName} ${className} ${sashClassName}`}
+      className={`flex gap-1 justify-center items-center bg-gray-200 dark:bg-gray-800 active:bg-blue-200 dark:active:bg-blue-800 text-dark dark:text-white ${isHoverClassName} ${className} ${sashClassName}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onMouseDown={handleClick}
@@ -133,14 +140,14 @@ const Sash: React.FC<SashProps> = ({
           <div
             className={styles.collapseButton}
             title="左侧折叠"
-            onClick={onFrontClick}
+            onClick={handleFrontClick}
           >
             <CaretLeftOutlined />
           </div>
           <div
             className={styles.collapseButton}
             title="右侧折叠"
-            onClick={onEndClick}
+            onClick={handleEndClick}
           >
             <CaretRightOutlined />
           </div>
@@ -150,14 +157,14 @@ const Sash: React.FC<SashProps> = ({
           <div
             className={styles.collapseButton}
             title="上侧折叠"
-            onClick={onFrontClick}
+            onClick={handleFrontClick}
           >
             <CaretUpOutlined />
           </div>
           <div
             className={styles.collapseButton}
             title="下侧折叠"
-            onClick={onEndClick}
+            onClick={handleEndClick}
           >
             <CaretDownOutlined />
           </div>

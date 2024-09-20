@@ -8,7 +8,7 @@
  * @example
  */
 
-import Sash from "../sash";
+import Sash from "./sash";
 SashDemo.propTypes = {
   // value: propTypes.any
 };
