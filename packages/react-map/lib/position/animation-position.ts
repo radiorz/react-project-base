@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { isEqual } from "lodash-es";
 import { Vec2 } from "./Vec2";
-const useAnimatedPosition = (latestPosition: Vec2, duration = 5000) => {
+export const useAnimatedPosition = (latestPosition: Vec2, duration = 5000) => {
   const [position, setPosition] = useState(latestPosition);
   const prevPositionRef = useRef<Vec2>(latestPosition);
 
@@ -68,5 +68,3 @@ const useAnimatedPosition = (latestPosition: Vec2, duration = 5000) => {
     animating: !isEqual(prevPositionRef.current, latestPosition),
   };
 };
-
-export default useAnimatedPosition;
