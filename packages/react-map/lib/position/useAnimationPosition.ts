@@ -6,7 +6,7 @@ import { Vec2 } from "./Vec2";
 export const useAnimatedPosition = (
   latestPosition: Vec2,
   duration: number = 5000
-): { position: Vec2; animating: boolean } => {
+) => {
   const [position, setPosition] = useState<Vec2>(latestPosition);
   const prevPositionRef = useRef<Vec2>(latestPosition);
   const animationRef = useRef<number | null>(null);
@@ -28,7 +28,7 @@ export const useAnimatedPosition = (
       // 在退出才记录最后的值
       prevPositionRef.current = latestPosition;
     };
-  }, [latestPosition]);
+  }, [latestPosition.x, latestPosition.y]);
 
   const startAnimation = (endPosition: Vec2) => {
     if (animationRef.current !== null) {
@@ -63,6 +63,7 @@ export const useAnimatedPosition = (
 
   return {
     position,
+    prevPosition: prevPositionRef.current,
     animating: !isEqual(prevPositionRef.current, latestPosition),
   };
 };
