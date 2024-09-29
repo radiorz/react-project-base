@@ -8,7 +8,7 @@
  * @example
  */
 
-import { useState, useEffect, memo } from "react";
+import { useEffect, useState } from "react";
 import { Status, StatusDot } from "./status-dot";
 interface Props {
   // value: propTypes.any
@@ -32,6 +32,8 @@ export const StatusDotDemo: React.FC<Props> = () => {
       <StatusDot status={Status.fail}></StatusDot>
       <StatusDot status={Status.warning}></StatusDot>
       <StatusDot status={status}></StatusDot>
+      <StatusDot status={status}></StatusDot>
+      <StatusDot status={Status.warning}></StatusDot>
     </>
   );
 };
