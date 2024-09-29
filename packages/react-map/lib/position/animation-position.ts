@@ -6,10 +6,11 @@ const useAnimatedPosition = (latestPosition: Vec2, duration = 5000) => {
   const [position, setPosition] = useState(latestPosition);
   const prevPositionRef = useRef<Vec2>(latestPosition);
 
-  const animationRef = useRef(null);
-  const startTimeRef = useRef(null);
+  const animationRef = useRef<null | number>(null);
+  const startTimeRef = useRef<null | number>(null);
 
   useEffect(() => {
+    // 最新位置与之前的位置不同
     if (
       latestPosition.x !== prevPositionRef.current.x ||
       latestPosition.y !== prevPositionRef.current.y
@@ -20,7 +21,7 @@ const useAnimatedPosition = (latestPosition: Vec2, duration = 5000) => {
       // 在退出才记录最后的值
       prevPositionRef.current = latestPosition;
     };
-  }, latestPosition);
+  }, [latestPosition]);
 
   const startAnimation = (endPosition: Vec2) => {
     if (animationRef.current) {
