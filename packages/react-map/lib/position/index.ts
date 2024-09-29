@@ -1,2 +1,2 @@
-export * from "./animation-position";
+export * from "./useAnimationPosition";
 export * from "./Vec2";

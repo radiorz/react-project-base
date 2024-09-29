@@ -1,13 +1,16 @@
-// useAnimatedPosition.js
+// useAnimatedPosition.ts
 import { useState, useEffect, useRef } from "react";
 import { isEqual } from "lodash-es";
 import { Vec2 } from "./Vec2";
-export const useAnimatedPosition = (latestPosition: Vec2, duration = 5000) => {
-  const [position, setPosition] = useState(latestPosition);
-  const prevPositionRef = useRef<Vec2>(latestPosition);
 
-  const animationRef = useRef<null | number>(null);
-  const startTimeRef = useRef<null | number>(null);
+export const useAnimatedPosition = (
+  latestPosition: Vec2,
+  duration: number = 5000
+): { position: Vec2; animating: boolean } => {
+  const [position, setPosition] = useState<Vec2>(latestPosition);
+  const prevPositionRef = useRef<Vec2>(latestPosition);
+  const animationRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
     // 最新位置与之前的位置不同
@@ -17,22 +20,26 @@ export const useAnimatedPosition = (latestPosition: Vec2, duration = 5000) => {
     ) {
       startAnimation(latestPosition);
     }
+    // 组件卸载时清理
     return () => {
+      if (animationRef.current !== null) {
+        cancelAnimationFrame(animationRef.current);
+      }
       // 在退出才记录最后的值
       prevPositionRef.current = latestPosition;
     };
   }, [latestPosition]);
 
   const startAnimation = (endPosition: Vec2) => {
-    if (animationRef.current) {
+    if (animationRef.current !== null) {
       cancelAnimationFrame(animationRef.current);
     }
 
     const startPosition = prevPositionRef.current.clone();
-    startTimeRef.current = null;
+    startTimeRef.current = performance.now();
 
     const animate = (timestamp: number) => {
-      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      if (startTimeRef.current === null) startTimeRef.current = timestamp;
       const elapsed = timestamp - startTimeRef.current;
       const progress = Math.min(elapsed / duration, 1);
 
@@ -47,24 +54,15 @@ export const useAnimatedPosition = (latestPosition: Vec2, duration = 5000) => {
         animationRef.current = requestAnimationFrame(animate);
       } else {
         prevPositionRef.current = endPosition;
+        setPosition(endPosition);
       }
     };
 
     animationRef.current = requestAnimationFrame(animate);
   };
 
-  useEffect(() => {
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, []);
-
   return {
-    // 当前位置
     position,
-    // 是否在移动
     animating: !isEqual(prevPositionRef.current, latestPosition),
   };
 };

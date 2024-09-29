@@ -24,9 +24,10 @@ export default defineConfig({
           react: "React",
           "react-dom": "ReactDOM",
           ol: "ol",
+          rlayers: "rlayers",
         },
       },
-      external: ["react", "react-dom", "ol"],
+      external: ["react", "react-dom", "ol", "rlayers"],
     },
   },
   resolve: {
