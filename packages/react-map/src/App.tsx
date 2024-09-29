@@ -2,18 +2,24 @@
  * @author
  * @file App.tsx
  * @fileBase App
- * @path packages\react-map\src\App.tsx
+ * @path packages\react-ui\src\App.tsx
  * @from
  * @desc
+ * @todo
+ *
+ *
+ * @done
  * @example
  */
 
-import { useState, useEffect, memo } from "react";
-import { useAnimatedPosition } from "../lib/position/useAnimationPosition";
-interface Props {
+import React from "react";
+// import TestTree from "./TestTree";
+import { UseAnimationPositionDemo } from "../lib/position/useAnimationPosition.demo";
+interface AppProps {
   // value: propTypes.any
 }
-import { UseAnimationPositionDemo } from "../lib/position/useAnimationPosition.demo";
-export const App: React.FC<Props> = () => {
-  return <div>App</div>;
-};
+function App() {
+  return <UseAnimationPositionDemo></UseAnimationPositionDemo>;
+}
+
+export default App;
