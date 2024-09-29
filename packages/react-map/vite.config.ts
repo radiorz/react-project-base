@@ -1,10 +1,12 @@
-import { defineConfig } from 'vite';
-import packageJson from './package.json';
-import banner from 'vite-plugin-banner';
-import { fileURLToPath, URL } from 'node:url';
-const name = packageJson.name.split('/')[1];
+import { defineConfig } from "vite";
+import packageJson from "./package.json";
+import react from "@vitejs/plugin-react-swc";
+import banner from "vite-plugin-banner";
+import { fileURLToPath, URL } from "node:url";
+const name = packageJson.name.split("/")[1];
 export default defineConfig({
   plugins: [
+    react(),
     banner(`
     packageName: ${packageJson.name} 
     version: ${packageJson.version}
@@ -12,14 +14,24 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: './lib/index.ts',
+      entry: "./lib/index.ts",
       name: toBigCamelCase(name),
       fileName: name,
+    },
+    rollupOptions: {
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+          ol: "ol",
+        },
+      },
+      external: ["react", "react-dom", "ol"],
     },
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./lib', import.meta.url)),
+      "@": fileURLToPath(new URL("./lib", import.meta.url)),
     },
   },
 });
