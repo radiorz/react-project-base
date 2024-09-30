@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+import AutoImport from "unplugin-auto-import/vite";
 
 import packageJson from "./package.json";
 import { fileURLToPath, URL } from "node:url";
@@ -9,7 +10,12 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    AutoImport({
+      imports: ["react", "react-router-dom"],
+    }),
+  ],
   build: {
     lib: {
       entry: "./lib/index.ts",
