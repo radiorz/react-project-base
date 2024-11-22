@@ -9,7 +9,9 @@
  */
 
 // import { useState, useEffect, memo } from "react";
-
+interface ThemeMode {
+  
+}
 export interface ThemeModeSelectorProps {
   value?: ThemeMode;
   onValueChange?: (value: ThemeMode) => void;
