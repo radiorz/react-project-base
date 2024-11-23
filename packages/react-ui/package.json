@@ -31,7 +31,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
     "@tikkhun/react-hooks": "workspace:^",
-    "antd": "^5.21.1",
+    "antd": "^5.21.4",
     "framer-motion": "^11.11.17",
     "lodash-es": "^4.17.21",
     "overlayscrollbars": "^2.10.0",
