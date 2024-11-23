@@ -12,7 +12,6 @@
  * @example
  */
 
-import "../index.css";
 import { SearchTree } from "./search-tree";
 import { useState } from "react";
 import treeData from "./tree.consts.json" 

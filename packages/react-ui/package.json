@@ -23,6 +23,11 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "peerDependencies": {
+    "antd": "*",
+    "react": "*",
+    "react-dom": "*"
+  },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
     "@tikkhun/react-hooks": "workspace:^",

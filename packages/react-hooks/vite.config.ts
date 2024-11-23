@@ -18,9 +18,10 @@ export default defineConfig({
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
+          "react-router": "ReactRouter",
         },
       },
-      external: ["react", "react-dom", "react-router", "react-router-dom"],
+      external: ["react", "react-dom", "react-router"],
     },
   },
   resolve: {

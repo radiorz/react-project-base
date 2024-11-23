@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [
     react(),
     AutoImport({
-      imports: ["react", "react-router-dom"],
+      imports: ["react", "react-router"],
     }),
   ],
   build: {
@@ -23,7 +23,14 @@ export default defineConfig({
       fileName: name,
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react-router", "react-router-dom"],
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+          "react-router": "ReactRouter",
+        },
+      },
+      external: ["react", "react-dom", "react-router"],
     },
   },
   resolve: {
