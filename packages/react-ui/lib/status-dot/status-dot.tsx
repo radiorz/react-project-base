@@ -7,7 +7,7 @@
  * @desc
  * @example
  */
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useMemo } from "react";
 
 export enum Status {

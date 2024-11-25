@@ -84,7 +84,7 @@ importers:
   packages/react-map:
     dependencies:
       '@types/react-dom':
-        specifier: ^18.3.0
+        specifier: ^18.3.1
         version: 18.3.1
       lodash-es:
         specifier: ^4.17.21
@@ -103,28 +103,28 @@ importers:
         version: 3.2.0(ol@10.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@tikkhun/utils-core':
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.0.8
+        version: 0.0.8
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
       '@types/react':
-        specifier: ^18.3.10
+        specifier: ^18.3.12
         version: 18.3.12
       '@vitejs/plugin-react-swc':
-        specifier: ^3.7.0
+        specifier: ^3.7.1
         version: 3.7.1(vite@5.4.11(@types/node@20.17.7))
       typescript:
-        specifier: ^5.6.2
+        specifier: ^5.7.2
         version: 5.7.2
       vite:
-        specifier: ^5.4.8
+        specifier: ^5.4.11
         version: 5.4.11(@types/node@20.17.7)
       vite-plugin-banner:
         specifier: ^0.8.0
         version: 0.8.0
       vitest:
-        specifier: ^2.1.1
+        specifier: ^2.1.5
         version: 2.1.5(@types/node@20.17.7)
 
   packages/react-ui:
@@ -138,12 +138,12 @@ importers:
       antd:
         specifier: ^5.22.2
         version: 5.22.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      framer-motion:
-        specifier: ^11.11.17
-        version: 11.11.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
+      motion:
+        specifier: ^11.11.17
+        version: 11.11.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       overlayscrollbars:
         specifier: ^2.10.0
         version: 2.10.0
@@ -921,8 +921,8 @@ packages:
     resolution: {integrity: sha512-/DiOQ5xBxgdYRC8LNk7U+RWat0S3qRLeIw3ZIkMQ9kkVlRmwD/Eg8k8CqIpD6GW7u20JIUOfMKbxtiLutpjQ4g==}
     engines: {node: '>=12'}
 
-  '@tikkhun/utils-core@0.0.6':
-    resolution: {integrity: sha512-GT9WHbKzxWyqxq/rL7uTBWSESA8TNOuYxAYks8GsQwsoyP0XRaXyl5j+jZNUq3eqaSxdWAFIG4k03914Fnl8PQ==}
+  '@tikkhun/utils-core@0.0.8':
+    resolution: {integrity: sha512-KMReoei3hXS8/y9GS+p28xmu++o+WBT6NYfOSFS4lxN3rdvPgGxQCi1j/zm7PoRpCXo8z6/CYGR6Suf31rJ37A==}
 
   '@tikkhun/web-utils@0.0.4':
     resolution: {integrity: sha512-cFnZYrF8aeMCzr9wEC45NreK77TVSHk+piS1a1wGfW7pyxZrkjLnIR/c/qahb5nAn7BHsK/wcR5fPSbKKGieMQ==}
@@ -2532,6 +2532,20 @@ packages:
 
   mlly@1.7.3:
     resolution: {integrity: sha512-xUsx5n/mN0uQf4V548PKQ+YShA4/IW0KI1dZhrNrPCLG+xizETbHTkOa1f8/xut9JRPp8kQuMnz0oqwkTiLo/A==}
+
+  motion@11.11.17:
+    resolution: {integrity: sha512-y6mXYElvJ5HHwPBUpYG/5wclKVGW4hJhqPkTjWccib5/WrcRM185adg3+4aSmG5iD10XKFt5uBOAiKwuzMHPPQ==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
@@ -4391,7 +4405,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@tikkhun/utils-core@0.0.6':
+  '@tikkhun/utils-core@0.0.8':
     dependencies:
       lodash: 4.17.21
 
@@ -6344,6 +6358,14 @@ snapshots:
       pathe: 1.1.2
       pkg-types: 1.2.1
       ufo: 1.5.4
+
+  motion@11.11.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      framer-motion: 11.11.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      tslib: 2.8.1
+    optionalDependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   ms@2.1.3: {}
 

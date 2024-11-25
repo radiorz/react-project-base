@@ -19,17 +19,17 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@tikkhun/utils-core": "^0.0.6",
+    "@tikkhun/utils-core": "^0.0.8",
     "@types/lodash-es": "^4.17.12",
-    "@types/react": "^18.3.10",
-    "@vitejs/plugin-react-swc": "^3.7.0",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.8",
+    "@types/react": "^18.3.12",
+    "@vitejs/plugin-react-swc": "^3.7.1",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
     "vite-plugin-banner": "^0.8.0",
-    "vitest": "^2.1.1"
+    "vitest": "^2.1.5"
   },
   "dependencies": {
-    "@types/react-dom": "^18.3.0",
+    "@types/react-dom": "^18.3.1",
     "lodash-es": "^4.17.21",
     "ol": "^10.2.1",
     "react": "^18.3.1",
