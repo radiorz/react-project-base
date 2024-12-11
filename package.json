@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "del-cli": "^5.1.0",
-    "turbo": "^1.13.2"
+    "del-cli": "^6.0.0",
+    "turbo": "^2.3.3"
   }
 }
