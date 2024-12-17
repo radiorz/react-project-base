@@ -8,6 +8,8 @@
  * @example
  */
 
+import { cn } from "../class-name";
+
 export interface IconfontIconProps {
   type: string;
   className: string;
@@ -24,7 +26,7 @@ export const IconfontIcon: React.FC<IconfontIconProps> = ({
   return (
     <i
       {...props}
-      className={`iconfont icon-${type} ${className || ""}`}
+      className={cn("iconfont", `icon-${type}`, className)}
       style={style}
     />
   );

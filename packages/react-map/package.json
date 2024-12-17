@@ -21,7 +21,7 @@
   "devDependencies": {
     "@tikkhun/utils-core": "^0.0.10",
     "@types/lodash-es": "^4.17.12",
-    "@types/react": "^18.3.12",
+    "@types/react": "^19.0.1",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "typescript": "^5.7.2",

@@ -15,6 +15,7 @@ import { Button } from "antd";
 import { useMemo, useState } from "react";
 import { ActionGroupDropDown } from "./action-group-drop-down";
 import { type ActionHandler, type Action } from "./action-group.interface";
+import { cn } from "../class-name";
 export interface InlineActionGroupProps {
   // value: propTypes.any
   className?: string;
@@ -49,7 +50,7 @@ export function InlineActionGroup({
   );
 
   return (
-    <div className={`flex items-center justify-center gap-1 ${className}`}>
+    <div className={cn("flex items-center justify-center gap-1", className)}>
       {primaryActions.map(({ icon, name, title }, i) => (
         <Button
           title={title}

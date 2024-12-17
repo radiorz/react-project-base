@@ -10,6 +10,7 @@
 
 import { ReactNode } from "react";
 import { InlineActionGroup, InlineActionGroupProps } from ".";
+import { cn } from "../class-name";
 export interface ActionGroupBarProps
   extends Omit<InlineActionGroupProps, "className"> {
   className?: string;
@@ -25,7 +26,10 @@ export const ActionGroupBar: React.FC<ActionGroupBarProps> = ({
 }) => {
   return (
     <div
-      className={`flex flex-row items-center justify-between p-2 ${className}`}
+      className={cn(
+        "flex flex-row items-center justify-between p-2",
+        className
+      )}
     >
       {renderTitle?.()}
       <div className="flex-grow"></div>

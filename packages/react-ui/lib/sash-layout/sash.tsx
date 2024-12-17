@@ -20,6 +20,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./sash.module.css";
 import { DirectionMap } from "./utils";
+import { cn } from "../class-name";
 // 定义 Sash 组件的属性接口
 interface SashProps {
   className?: string;
@@ -127,7 +128,12 @@ const Sash: React.FC<SashProps> = ({
   }
   return (
     <div
-      className={`flex gap-1 justify-center items-center bg-gray-200 dark:bg-gray-800 active:bg-blue-200 dark:active:bg-blue-800 text-dark dark:text-white ${isHoverClassName} ${className} ${sashClassName}`}
+      className={cn(
+        "flex gap-1 justify-center items-center bg-gray-200 dark:bg-gray-800 active:bg-blue-200 dark:active:bg-blue-800 text-dark dark:text-white",
+        isHoverClassName,
+        className,
+        sashClassName
+      )}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onMouseDown={handleClick}

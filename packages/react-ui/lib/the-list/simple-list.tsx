@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { cn } from "../class-name";
 
 interface SimpleListProps {
   className: string;
@@ -12,7 +13,12 @@ export function SimpleList({
   renderItem,
 }: SimpleListProps) {
   return (
-    <div className={`overflow-y-scroll bg-gray-200 bg-gray-800 flex-grow ${className}`}>
+    <div
+      className={cn(
+        "overflow-y-scroll bg-gray-200 bg-gray-800 flex-grow",
+        className
+      )}
+    >
       {/* // 这里需要滚动 */}
       <div className="flex flex-wrap w-full @container justify-start">
         {/* // 这里要做虚拟列表 */}

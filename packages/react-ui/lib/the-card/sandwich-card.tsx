@@ -9,6 +9,7 @@
  */
 
 import { ActionGroupBar, ActionGroupBarProps } from "../action-group";
+import { cn } from "../class-name";
 export interface SandwichCardProps {
   // value: propTypes.any
   barProps?: ActionGroupBarProps;
@@ -24,7 +25,10 @@ export const SandwichCard: React.FC<SandwichCardProps> = ({
 }) => {
   return (
     <div
-      className={`flex flex-col transition-shadow duration-300 rounded hover:shadow-lg overflow-hidden ${className}`}
+      className={cn(
+        "flex flex-col transition-shadow duration-300 rounded hover:shadow-lg overflow-hidden",
+        className
+      )}
     >
       <ActionGroupBar {...barProps} />
       <div className="flex-grow">{children}</div>

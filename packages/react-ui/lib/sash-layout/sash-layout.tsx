@@ -20,6 +20,7 @@
 import React, { useState, ReactNode, useEffect } from "react";
 import Sash from "./sash";
 import { DirectionMap, checkPositive } from "./utils";
+import { cn } from "../class-name";
 // import { debounce } from "lodash-es";
 
 // Define the prop types for the SashLayout component
@@ -126,7 +127,7 @@ export const SashLayout: React.FC<SashLayoutProps> = ({
       return (
         <div
           key={i}
-          className={shouldHidden ? "hidden" : ""}
+          className={cn(shouldHidden && "hidden")}
           style={{ [isHorizontal ? "width" : "height"]: `${lengths?.[i]}px` }}
         >
           {/* Render the item only if its length is truthy */}
@@ -148,7 +149,7 @@ export const SashLayout: React.FC<SashLayoutProps> = ({
   const theClass = isHorizontal ? "flex-row" : "flex-col";
 
   return (
-    <div className={`flex w-screen h-screen ${theClass} ${className}`}>
+    <div className={cn("flex w-screen h-screen", theClass, className)}>
       {showItems}
     </div>
   );

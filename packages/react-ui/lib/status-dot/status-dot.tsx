@@ -9,6 +9,7 @@
  */
 import { motion, AnimatePresence } from "motion/react";
 import { useMemo } from "react";
+import { cn } from "../class-name";
 
 export enum Status {
   success = "success",
@@ -16,7 +17,7 @@ export enum Status {
   fail = "fail",
 }
 
-interface StatusDotProps {
+export interface StatusDotProps {
   status: Status;
 }
 
@@ -42,7 +43,7 @@ export const StatusDot: React.FC<StatusDotProps> = ({ status }) => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.3 }}
-        className={`w-2 h-2 rounded-full ${dotColor}`}
+        className={cn("w-2 h-2 rounded-full", dotColor)}
       ></motion.div>
     </AnimatePresence>
   );
