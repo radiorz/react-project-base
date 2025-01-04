@@ -1,8 +1,8 @@
-import { ReloadOutlined, SearchOutlined } from "@ant-design/icons";
-import { Button, Input, Spin, Tree } from "antd";
-import { debounce } from "lodash-es";
+import { ReloadOutlined } from "@ant-design/icons";
+import { Button, Spin, Tree } from "antd";
 import { Key, memo, ReactNode, useCallback, useRef, useState } from "react";
 import { Action } from "../action-group/action-group.interface";
+import { DebounceInput } from '../input';
 import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
 import { TreeNodeProps } from "./search-tree.interface";
@@ -26,29 +26,6 @@ export interface SearchTreeProps {
   footHeight?: number;
   [props: string]: any; // 这里是tree的props
 }
-// DebounceInput
-export interface DebounceInputProps {
-  // searchText: string;
-  className?: string;
-  onSearch?: (value: string) => void;
-}
-export const DebounceInput = memo(
-  ({ className, onSearch }: DebounceInputProps) => {
-    const handleChange = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-      onSearch?.(value);
-    }, 250);
-    return (
-      <Input
-        className={className}
-        placeholder="输入关键词查找节点..."
-        onChange={handleChange}
-        prefix={<SearchOutlined />}
-      />
-    );
-  }
-);
-
 export function Loading() {
   return (
     <div className="flex items-center justify-center w-full h-full max-h-screen max-w-screen">
@@ -144,7 +121,7 @@ export function SearchTree({
         }
       >
         <DebounceInput
-          // searchText={searchValue}
+          value={searchValue}
           className="!w-full flex-grow" // 本来不需要w-full的 但是不知道为什么在实际项目上就不起作用flex-grow。。。
           onSearch={onSearch}
         ></DebounceInput>
