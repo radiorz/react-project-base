@@ -1,8 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export function buildClassName(...inputs: ClassValue[]) {
+export function mergeClassName(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
-export const cn = buildClassName;
+// shadcn ~
+export const cn = mergeClassName;
