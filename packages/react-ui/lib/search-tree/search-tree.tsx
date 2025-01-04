@@ -2,7 +2,7 @@ import { ReloadOutlined } from "@ant-design/icons";
 import { Button, Spin, Tree } from "antd";
 import { Key, memo, ReactNode, useCallback, useRef, useState } from "react";
 import { Action } from "../action-group/action-group.interface";
-import { DebounceInput } from '../input';
+import { DebounceInput } from "../input";
 import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
 import { TreeNodeProps } from "./search-tree.interface";
@@ -103,9 +103,9 @@ export function SearchTree({
       ></MemorizedTreeNode>
     );
   };
-  // 处理刷新
   const treeContainer = useRef(null);
   const { dimensions } = useResizeObserver(treeContainer);
+  // 树的高度
   // 底部漏出16
   const { height: maxHeight } = useMaxHeight(
     treeContainer,
@@ -126,6 +126,7 @@ export function SearchTree({
           onSearch={onSearch}
         ></DebounceInput>
         <Button
+          loading={loading}
           icon={<ReloadOutlined />}
           onClick={onRefresh}
           className="!w-full @[300px]:!w-auto"
