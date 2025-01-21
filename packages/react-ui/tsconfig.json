@@ -23,7 +23,7 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/lib/*": ["./lib/*"]
-    }
+    },
   },
   "include": ["lib"],
   "references": [{ "path": "./tsconfig.node.json" }]

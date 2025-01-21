@@ -13,20 +13,26 @@ export function useSearchTitle(title: string, searchValue: string) {
   if (typeof title === "undefined" || title === "") {
     return <span className="truncate">{title || "-"}</span>;
   }
-  if (!searchValue) {
+  if (typeof searchValue === "undefined" || searchValue === "") {
     return <span className="truncate">{title || "-"}</span>;
   }
-  const index = title?.indexOf(searchValue || "");
-  if (typeof index !== "undefined" && index > -1) {
-    const beforeStr = title?.substring(0, index);
-    const afterStr = title?.substring(index + searchValue.length);
+  if (title.includes(searchValue)) {
+    const otherTexts = title.split(searchValue);
     return (
-      <span className="truncate">
-        {beforeStr}
-        <span className="text-red-500 bg-yellow-200 dark:text-red-600 dark:bg-yellow-700">
-          {searchValue}
-        </span>
-        {afterStr}
+      <span>
+        {otherTexts.map((text, index) => {
+          if (index !== otherTexts.length - 1) {
+            return (
+              <span>
+                {text}
+                <span className="text-red-500 bg-yellow-200 dark:text-red-200 dark:bg-yellow-700">
+                  {searchValue}
+                </span>
+              </span>
+            );
+          }
+          return text
+        })}
       </span>
     );
   }
@@ -52,8 +58,8 @@ export const TreeNode = ({
     handleNodeAction?.(type, item);
   }
   return (
-    <div className="relative flex items-center justify-between group ">
-      <div className="flex items-center gap-2">
+    <div className="relative flex items-center justify-between min-w-0 group">
+      <div className="inline-flex min-w-0 gap-2 truncate">
         {icon}
         {title}
       </div>

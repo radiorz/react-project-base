@@ -15,6 +15,8 @@ export interface SearchInputProps{
   onChange: (value: string) => void;
   [key: string]: any;
 }
+// FIXME 这里会遇到可控和非可控的问题
+
 export function SearchInput({ value, onChange,...props }: SearchInputProps) {
   return (
     <Input

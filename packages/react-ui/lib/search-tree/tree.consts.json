@@ -4,7 +4,7 @@
         "id": "0",
         "pid": 0,
         "name": "1院",
-        "title": "医院",
+        "title": "医院医院医院",
         "description": "1院的描述",
         "icon": "hospital",
         "star": false,
@@ -29251,6 +29251,60 @@
                 "children": [],
                 "parentKey": "0",
                 "key": "0-9"
+            },
+               {
+                "_id": "66dfc25b6bc25f34e7bc429",
+                "title": "新建节点新建节点新建节点新建节点新建节点新建节点新建节点新建节点新建节点新建节点新建节点新建节点新建节点新建节点新建节点新建节点",
+                "icon": "",
+                "type": "navigatornode",
+                "group": "default/0/461",
+                "groupId": "461",
+                "groups": {},
+                "createdAt": null,
+                "createdBy": null,
+                "pid": "0",
+                "description": "",
+                "resource": {},
+                "device": {},
+                "related": [],
+                "treeId": "default",
+                "treeLeft": 754,
+                "treeRight": 755,
+                "treeLevel": 2,
+                "id": "461",
+                "nextId": null,
+                "__options__": {
+                    "checkConfigable": true,
+                    "debug": false
+                },
+                "updatedAt": "2024-09-10T03:51:56.312Z",
+                "prevId": "390",
+                "actions": {
+                    "view": {
+                        "name": "view",
+                        "title": "查看",
+                        "icon": "view",
+                        "description": "",
+                        "paramSchema": {
+                            "definitions": {},
+                            "type": "object",
+                            "title": "The Action Schema of Resource Type NAVIGATORNODE",
+                            "required": [],
+                            "properties": {}
+                        },
+                        "resultSchema": {
+                            "definitions": {},
+                            "type": "object",
+                            "title": "The Action Schema of Resource Type NAVIGATORNODE",
+                            "required": [],
+                            "properties": {}
+                        },
+                        "relatedResActions": []
+                    }
+                },
+                "children": [],
+                "parentKey": "0",
+                "key": "0-10"
             }
         ],
         "parentKey": "",
