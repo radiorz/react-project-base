@@ -59,7 +59,7 @@ export const TreeNode = ({
   }
   return (
     <div className="relative flex items-center justify-between min-w-0 group">
-      <div className="inline-flex min-w-0 gap-2 truncate">
+      <div className="inline-flex items-center min-w-0 gap-2 truncate">
         {icon}
         {title}
       </div>
