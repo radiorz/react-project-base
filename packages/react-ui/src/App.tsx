@@ -27,7 +27,7 @@ function App() {
   const systemTheme = useSystemTheme();
   // return <StatusDotDemo></StatusDotDemo>;
   // return <SandwichCardDemo></SandwichCardDemo>;
-  // return <SashDemo></SashDemo>;
+  return <SashDemo></SashDemo>;
   // return <TheListDemo></TheListDemo>;
   // return <Horizontal></Horizontal>;
   return (

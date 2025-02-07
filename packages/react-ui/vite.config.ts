@@ -3,10 +3,15 @@ import react from "@vitejs/plugin-react-swc";
 import banner from "vite-plugin-banner";
 import packageJson from "./package.json";
 import { fileURLToPath, URL } from "node:url";
+import tailwindcss from "@tailwindcss/vite";
 
 const name = packageJson.name.split("/")[1];
 export default defineConfig({
+  server: {
+    host: "0.0.0.0",
+  },
   plugins: [
+    tailwindcss(),
     react(),
     banner(`
     packageName: ${packageJson.name} 

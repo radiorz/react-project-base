@@ -1,7 +1,5 @@
-.center {
-  @apply flex items-center justify-center;
-}
+@reference "../index.css";
 
 .collapseButton {
-  @apply w-3 h-10 text-center rounded-full cursor-pointer hover:bg-white dark:hover:bg-black center active:bg-blue-300 dark:active:bg-blue-800;
+  @apply w-3 h-10 text-center rounded-full cursor-pointer center hover:bg-white dark:hover:bg-black active:bg-blue-300 dark:active:bg-blue-800;
 }
