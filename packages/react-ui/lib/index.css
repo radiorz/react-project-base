@@ -8,3 +8,7 @@ body {
 @utility center {
   @apply flex items-center justify-center;
 }
+
+.center {
+  @apply center;
+}

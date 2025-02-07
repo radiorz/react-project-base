@@ -1,6 +1,6 @@
 {
   "name": "@tikkhun/react-ui",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "type": "module",
   "main": "dist/react-ui.js",
   "module": "dist/react-ui.umd.cjs",
@@ -29,7 +29,7 @@
     "react-dom": "*"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.6.0",
+    "@ant-design/icons": "^5.6.1",
     "@tailwindcss/postcss": "^4.0.4",
     "@tikkhun/react-hooks": "workspace:^",
     "antd": "^5.23.4",

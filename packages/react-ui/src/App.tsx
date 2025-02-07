@@ -14,11 +14,12 @@
 
 import React from "react";
 // import TestTree from "./TestTree";
-import {useSystemTheme} from "../lib";
+import { useSystemTheme } from "../lib";
 import { SandwichCardDemo } from "../lib/the-card/sandwich-card.demo";
 import SashDemo from "../lib/sash-layout/sash.demo";
+import { SashVerticalDemo } from "../lib/sash-layout/demo/vertical";
 import { StatusDotDemo } from "../lib/status-dot/status-dot.demo";
-import {SearchTreeDemo} from '../lib/search-tree/search-tree.demo'
+import { SearchTreeDemo } from "../lib/search-tree/search-tree.demo";
 import { ConfigProvider, theme } from "antd";
 interface AppProps {
   // value: propTypes.any
@@ -29,16 +30,16 @@ function App() {
   // return <SandwichCardDemo></SandwichCardDemo>;
   // return <SashDemo></SashDemo>;
   // return <TheListDemo></TheListDemo>;
-  // return <Horizontal></Horizontal>;
+  return <SashVerticalDemo></SashVerticalDemo>;
   return (
     <ConfigProvider
       theme={{
         algorithm: systemTheme === "dark" ? theme.darkAlgorithm : undefined,
       }}
     >
-    <SearchTreeDemo />  
-  </ConfigProvider>
-  )
+      <SearchTreeDemo />
+    </ConfigProvider>
+  );
 }
 
 export default App;

@@ -15,7 +15,7 @@
 import { SashLayout } from "../sash-layout";
 import { useWindowDimensions } from "../../window-dimensions";
 
-function Test() {
+export function SashVerticalDemo() {
   const { height } = useWindowDimensions(); // const
   return (
     <SashLayout
@@ -30,4 +30,3 @@ function Test() {
   );
 }
 
-export default Test;

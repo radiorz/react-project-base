@@ -15,7 +15,7 @@
 import { SashLayout } from "../sash-layout";
 import { useWindowDimensions } from "../../window-dimensions";
 
-function Test() {
+export function SashHorizontalDemo() {
   const { width } = useWindowDimensions(); // const
   const defaultLengths = [width / 4, width / 4, width / 4, width / 4];
   console.log(`defaultLengths`, defaultLengths);
@@ -29,4 +29,3 @@ function Test() {
   );
 }
 
-export default Test;

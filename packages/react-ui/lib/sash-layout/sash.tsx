@@ -18,9 +18,8 @@ import {
   CaretUpOutlined,
 } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
-import styles from "./sash.module.css";
-import { DirectionMap } from "./utils";
 import { cn } from "../class-name";
+import { DirectionMap } from "./utils";
 // 定义 Sash 组件的属性接口
 interface SashProps {
   className?: string;
@@ -144,14 +143,14 @@ const Sash: React.FC<SashProps> = ({
       {isHorizontal ? (
         <>
           <div
-            className={styles.collapseButton}
+            className="w-3 h-10 text-center rounded-full cursor-pointer hover:bg-white dark:hover:bg-black active:bg-blue-300 dark:active:bg-blue-800 center"
             title="左侧折叠"
             onClick={handleFrontClick}
           >
             <CaretLeftOutlined />
           </div>
           <div
-            className={styles.collapseButton}
+            className="w-3 h-10 text-center rounded-full cursor-pointer hover:bg-white dark:hover:bg-black active:bg-blue-300 dark:active:bg-blue-800 center"
             title="右侧折叠"
             onClick={handleEndClick}
           >
@@ -161,14 +160,14 @@ const Sash: React.FC<SashProps> = ({
       ) : (
         <>
           <div
-            className={styles.collapseButton}
+            className="w-10 h-3 text-center rounded-full cursor-pointer hover:bg-white dark:hover:bg-black active:bg-blue-300 dark:active:bg-blue-800 center"
             title="上侧折叠"
             onClick={handleFrontClick}
           >
             <CaretUpOutlined />
           </div>
           <div
-            className={styles.collapseButton}
+            className="w-10 h-3 text-center rounded-full cursor-pointer hover:bg-white dark:hover:bg-black active:bg-blue-300 dark:active:bg-blue-800 center"
             title="下侧折叠"
             onClick={handleEndClick}
           >
