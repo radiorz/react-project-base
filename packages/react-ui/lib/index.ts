@@ -1,9 +1,12 @@
 // import "overlayscrollbars/overlayscrollbars.css";
 import "./index.css";
 export * from "./action-group";
+export * from "./class-name";
+export * from "./corner";
 export * from "./full-screen";
 export * from "./iconfont-icon";
 export * from "./image-size";
+export * from "./input";
 export * from "./max-height";
 export * from "./resize";
 export * from "./sash-layout";
@@ -13,5 +16,4 @@ export * from "./the-list";
 export * from "./the-time";
 export * from "./tree";
 export * from "./window-dimensions";
-export * from "./input";
-export * from './class-name'
+
