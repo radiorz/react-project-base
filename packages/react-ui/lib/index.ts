@@ -14,6 +14,7 @@ export * from "./search-tree";
 export * from "./system-theme";
 export * from "./the-list";
 export * from "./the-time";
+export * from "./time-passed";
 export * from "./tree";
 export * from "./window-dimensions";
 
