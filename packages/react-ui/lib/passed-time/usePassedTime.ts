@@ -6,7 +6,7 @@ export function usePassedTime() {
   useEffect(() => {
     const timer = setInterval(() => {
       setPassedTime((prev) => prev + 1);
-    }, 500);
+    }, 1000);
 
     return () => clearInterval(timer);
   }, []);
