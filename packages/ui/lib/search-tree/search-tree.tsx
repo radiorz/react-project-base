@@ -5,10 +5,10 @@ import { Action } from "../action-group/action-group.interface";
 import { DebounceInput } from "../input";
 import { useMaxHeight } from "../max-height";
 import { useResizeObserver } from "../resize/useResizeObserver";
-import { TreeNodeProps } from "./search-tree.interface";
-import { TreeNode } from "./tree-node";
+import { TreeNode } from "./tree.interface";
+import { TreeNodeComponent } from "./tree-node";
 import { findExpandedKeysBySearchText } from "./utils";
-const MemorizedTreeNode = memo(TreeNode);
+const MemorizedTreeNode = memo(TreeNodeComponent);
 export interface SearchTreeProps {
   selectedKeys?: string[];
   setSelectedKeys?: Function;
@@ -16,11 +16,11 @@ export interface SearchTreeProps {
     [key: string]: Action[];
   };
   renderIcon?: (item: any) => ReactNode;
-  onSelect: (selectedNode: TreeNodeProps) => void;
+  onSelect: (selectedNode: TreeNode) => void;
   nodeActions?: Action[];
-  handleNodeAction: (type: string, node: TreeNodeProps) => void;
+  handleNodeAction: (type: string, node: TreeNode) => void;
   onRefresh: () => void;
-  treeData?: TreeNodeProps[];
+  treeData?: TreeNode[];
   loading?: boolean;
   error?: any;
   footHeight?: number;
@@ -90,7 +90,7 @@ export function SearchTree({
     [treeData]
   );
   // 处理树节点渲染
-  const renderNodeTitle = (item: TreeNodeProps) => {
+  const renderNodeTitle = (item: TreeNode) => {
     // 某些特殊的节点需要设置不同的nodeActions
     const _nodeActions = nodeActionsByKey?.[item?.key || ""] || nodeActions;
     return (
@@ -156,7 +156,7 @@ export function SearchTree({
             autoExpandParent={autoExpandParent}
             onSelect={(selectedKeys, info) => {
               setSelectedKeys?.(selectedKeys);
-              const selectedNode = info.selectedNodes[0] as TreeNodeProps;
+              const selectedNode = info.selectedNodes[0] as TreeNode;
               onSelect(selectedNode);
             }}
             treeData={treeData}

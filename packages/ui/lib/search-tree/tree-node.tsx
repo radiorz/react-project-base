@@ -44,7 +44,7 @@ export const DEFAULT_TREE_NODE_ACTIONS = [
   { icon: <DeleteOutlined />, name: "delete", title: "删除节点" },
 ];
 
-export const TreeNode = ({
+export const TreeNodeComponent = ({
   item,
   renderIcon,
   searchValue,

@@ -1,7 +1,8 @@
-export interface TreeNodeProps {
+export interface TreeNode {
   key?: string;
   title?: string;
-  children?: TreeNodeProps[];
+  children?: TreeNode[];
   icon?: string;
   parentKey?: string;
+  [key: string]: any;
 }
