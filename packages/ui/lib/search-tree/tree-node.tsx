@@ -1,5 +1,6 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { InlineActionGroup, type Action } from "../action-group";
+import HighlightTitle from "./HighlightTitle";
 
 export interface TreeNodeComponentProps {
   item: any;
@@ -9,35 +10,6 @@ export interface TreeNodeComponentProps {
   handleNodeAction?: Function;
 }
 
-export function useSearchTitle(title: string, searchValue: string) {
-  if (typeof title === "undefined" || title === "") {
-    return <span className="truncate">{title || "-"}</span>;
-  }
-  if (typeof searchValue === "undefined" || searchValue === "") {
-    return <span className="truncate">{title || "-"}</span>;
-  }
-  if (title.includes(searchValue)) {
-    const otherTexts = title.split(searchValue);
-    return (
-      <span>
-        {otherTexts.map((text, index) => {
-          if (index !== otherTexts.length - 1) {
-            return (
-              <span>
-                {text}
-                <span className="text-red-500 bg-yellow-200 dark:text-red-200 dark:bg-yellow-700">
-                  {searchValue}
-                </span>
-              </span>
-            );
-          }
-          return text
-        })}
-      </span>
-    );
-  }
-  return <span className="truncate">{title || "-"}</span>;
-}
 export const DEFAULT_TREE_NODE_ACTIONS = [
   { icon: <PlusOutlined />, name: "addChild", title: "添加子节点" },
   { icon: <EditOutlined />, name: "update", title: "编辑节点" },
@@ -51,7 +23,6 @@ export const TreeNodeComponent = ({
   nodeActions = DEFAULT_TREE_NODE_ACTIONS,
   handleNodeAction,
 }: TreeNodeComponentProps) => {
-  const title = useSearchTitle(item?.title, searchValue);
   const icon = renderIcon?.(item);
 
   function _handleNodeAction(type: string) {
@@ -61,7 +32,10 @@ export const TreeNodeComponent = ({
     <div className="relative flex items-center justify-between min-w-0 group">
       <div className="inline-flex items-center min-w-0 gap-2 truncate">
         {icon}
-        {title}
+        <HighlightTitle
+          value={item?.title}
+          highlightText={searchValue}
+        ></HighlightTitle>
       </div>
       <InlineActionGroup
         className="absolute right-0 hidden group-hover:flex"
