@@ -21,7 +21,9 @@
     "dev": "vite",
     "build": "vite build && tsc",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "peerDependencies": {
     "antd": "*",
@@ -45,6 +47,13 @@
     "unplugin-auto-import": "^19.1.2"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "8.6.12",
+    "@storybook/addon-interactions": "8.6.12",
+    "@storybook/addon-onboarding": "8.6.12",
+    "@storybook/blocks": "8.6.12",
+    "@storybook/react": "8.6.12",
+    "@storybook/react-vite": "8.6.12",
+    "@storybook/test": "8.6.12",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/vite": "^4.1.3",
     "@types/css-modules": "^1.0.5",
@@ -58,7 +67,9 @@
     "eslint": "^9.24.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "eslint-plugin-storybook": "^0.12.0",
     "postcss": "^8.5.3",
+    "storybook": "8.6.12",
     "tailwindcss": "^4.1.3",
     "typescript": "^5.8.3",
     "vite": "^6.2.6",

@@ -10,7 +10,7 @@
 
 export interface HighlightTitleProps {
   value: string;
-  highlightText: string;
+  highlightText?: string;
 }
 export const HighlightTitle: React.FC<
   HighlightTitleProps
