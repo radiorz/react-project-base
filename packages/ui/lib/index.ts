@@ -17,4 +17,4 @@ export * from "./the-time";
 export * from "./passed-time";
 export * from "./tree";
 export * from "./window-dimensions";
-
+export * from "./lock";
