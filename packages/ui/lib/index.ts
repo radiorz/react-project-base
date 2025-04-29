@@ -20,3 +20,4 @@ export * from "./window-dimensions";
 export * from "./lock";
 export * from "./login";
 export * from "./error";
+export * from "./animation";
