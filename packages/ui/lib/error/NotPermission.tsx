@@ -1,17 +1,19 @@
 import { Button, Result } from "antd";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 export interface NotPermissionProps {
   redirectPath: string;
 }
 export const NotPermission: React.FC<NotPermissionProps> = ({
-  redirectPath,
 }) => {
+  const location = useLocation();
   const navigate = useNavigate();
   function goBackHome() {
     navigate("/");
   }
   function goLogin() {
-    navigate(`/login?redirect=${redirectPath}`);
+    navigate(`/login?redirect=${encodeURIComponent(location.pathname)}`, {
+      replace: true,
+    });
   }
   return (
     <Result
