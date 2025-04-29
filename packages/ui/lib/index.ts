@@ -19,3 +19,4 @@ export * from "./tree";
 export * from "./window-dimensions";
 export * from "./lock";
 export * from "./login";
+export * from "./error";
