@@ -1,3 +1,3 @@
 export * from "./eventbus";
-export * as events from "./events";
+export * as EVENTS from "./events";
 export * from "./useEventbus";

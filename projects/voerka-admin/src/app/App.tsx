@@ -12,10 +12,10 @@
  * @example
  */
 
-import { RouterProvider } from "react-router";
 import { router } from "@/router";
-import mqttClient from "./messageManager";
 import { useEffect } from "react";
+import { RouterProvider } from "react-router";
+import mqttClient from "@/messageManager";
 // function Navigation() {
 //   useGlobalRouter();
 //   return (
@@ -27,12 +27,11 @@ import { useEffect } from "react";
 // }
 import MqttNotification from "@/components/MqttNotification";
 import NetworkNotification from "@/components/NetworkNotification";
+import { AppProvider } from "@/components/AppProvider";
 import { useSystemTheme } from "@tikkhun/react-ui";
-import { ConfigProvider, theme } from "antd";
+import { App as AntdApp, ConfigProvider, theme } from "antd";
 import zhCN from "antd/locale/zh_CN";
-import { App as AntdApp } from "antd";
 // import enUS from "antd/locale/en_US";
-import AppProvider from "@/components/AppProvider";
 function App() {
   const systemTheme = useSystemTheme();
   console.log(`系统的主题是: `, systemTheme);

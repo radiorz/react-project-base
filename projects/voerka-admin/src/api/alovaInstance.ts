@@ -13,12 +13,12 @@ export const { onAuthRequired } = createClientTokenAuthentication({
 import { config } from "@/config";
 export const baseURL = import.meta.env.DEV
   ? "/api"
-  : config.get("baseurl") ?? ""; // 由于腾辉说要不要反向代理而是直接使用本地webRoot所以这样弄
+  : config.get("baseurl") ?? "/"; // 由于腾辉说要不要反向代理而是直接使用本地webRoot所以这样弄
 console.log(`baseURL`, baseURL);
 export const alovaInstance = createAlova({
   baseURL,
   statesHook: ReactHook,
-  beforeRequest: onAuthRequired((method) => {
+  beforeRequest: onAuthRequired(() => {
     // console.log(`method`, method);
   }),
   responded: async (response) => {
@@ -44,4 +44,6 @@ export const alovaInstance = createAlova({
   },
   requestAdapter: adapterFetch(),
 });
+
+// dev
 import.meta.env.DEV && (globalThis.$api = alovaInstance);

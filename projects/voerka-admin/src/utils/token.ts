@@ -1,5 +1,5 @@
 // import Cookies from "js-cookie";
-import { config } from "./config";
+import { config } from "../config";
 const TOKEN = "token";
 // 一个用于检查 token 的函数
 export const checkToken = () => {
