@@ -19,7 +19,7 @@ interface AuthLayoutProps {
   children: ReactNode;
 }
 
-function AuthLayout({ children }: AuthLayoutProps) {
+export function AuthLayout({ children }: AuthLayoutProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const userStore = useModuleStore("user");

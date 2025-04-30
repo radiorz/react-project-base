@@ -20,9 +20,12 @@ import { RouterProvider } from "react-router";
 import { useSystemTheme } from "@tikkhun/react-ui";
 import { App as AntdApp, ConfigProvider, theme } from "antd";
 import zhCN from "antd/locale/zh_CN";
+import { useApp } from "@voerka/react";
 // import enUS from "antd/locale/en_US";
 function App() {
   const systemTheme = useSystemTheme();
+  const app = useApp();
+  console.log(`app.router`, app.router);
   return (
     <ConfigProvider
       locale={zhCN}
@@ -32,10 +35,10 @@ function App() {
     >
       <AntdApp>
         {/* <AppProvider> */}
-          {/* // 确保文字颜色正常 */}
-          {/* <MqttNotification></MqttNotification>
+        {/* // 确保文字颜色正常 */}
+        {/* <MqttNotification></MqttNotification>
           <NetworkNotification></NetworkNotification> */}
-          <RouterProvider router={router}></RouterProvider>
+        <RouterProvider router={app.router}></RouterProvider>
         {/* </AppProvider> */}
       </AntdApp>
     </ConfigProvider>
