@@ -10,13 +10,9 @@ export const { onAuthRequired } = createClientTokenAuthentication({
     method.config.headers.Authorization = "Bearer " + getToken();
   },
 });
-import { config } from "@/config";
-export const baseURL = import.meta.env.DEV
-  ? "/api"
-  : config.get("baseurl") ?? "/"; // 由于腾辉说要不要反向代理而是直接使用本地webRoot所以这样弄
-console.log(`baseURL`, baseURL);
+
 export const alovaInstance = createAlova({
-  baseURL,
+  baseURL: "/",
   statesHook: ReactHook,
   beforeRequest: onAuthRequired(() => {
     // console.log(`method`, method);
