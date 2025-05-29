@@ -1,5 +1,5 @@
 {
-  "name": "tsup",
+  "name": "ui-tsup",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.3.1",
-    "tsup": "^8.3.0",
+    "tsup": "^8.5.0",
     "tsx": "^4.19.1",
     "vitest": "^2.1.3"
   }

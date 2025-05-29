@@ -4,3 +4,4 @@ packages:
   - "packages/*"
   - "projects/*"
   - "voerka-packages/*"
+  - "examples/*"
