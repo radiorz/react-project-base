@@ -21,7 +21,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsdown",
     "dev": "tsx ./src/index.ts",
     "test": "vitest"
   },
@@ -36,7 +36,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.3.1",
-    "tsup": "^8.5.0",
+    "esbuild-plugin-globals": "^0.2.0",
+    "tsdown": "^0.12.4",
     "tsx": "^4.19.1",
     "vitest": "^2.1.3"
   }

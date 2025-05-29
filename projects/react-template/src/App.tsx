@@ -8,15 +8,17 @@
  * @example
  */
 
-import { useState, useEffect, memo } from "react";
-import { TestTree } from "./components/TestTree";
+import { useState, useEffect, memo } from 'react';
+// import { TestTree } from "./components/TestTree";
+import { Hello } from 'ui-tsup';
 export interface AppProps {
   // value: any
 }
 export const App: React.FC<AppProps> = () => {
   return (
     <div>
-      <TestTree></TestTree>
+      <Hello></Hello>
+      {/* <TestTree></TestTree> */}
     </div>
   );
 };
