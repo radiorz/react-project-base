@@ -18,7 +18,7 @@
     "@formily/core": "^2.3.3",
     "@formily/react": "^2.3.3",
     "@tikkhun/react-ui": "^0.0.40",
-    "@tikkhun/utils-core": "^0.0.15",
+    "@tikkhun/utils-core": "^0.0.21",
     "@tikkhun/web-config": "^0.2.5",
     "@voerka/react": "latest",
     "ahooks": "^3.8.4",
