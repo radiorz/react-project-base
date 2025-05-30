@@ -12,6 +12,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "target": "ES2022",
