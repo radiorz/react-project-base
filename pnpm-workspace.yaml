@@ -5,3 +5,4 @@ packages:
   - "projects/*"
   - "voerka-packages/*"
   - "examples/*"
+  - "templates/*"
