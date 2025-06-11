@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback } from 'react';
 
 // 使用自定义 Hook 管理全屏状态
 export const useFullScreen = () => {
@@ -17,8 +17,8 @@ export const useFullScreen = () => {
         document.exitFullscreen();
       }
     }
-    setIsFullScreen(!isFullScreen);
+    setIsFullScreen((isFullScreen) => !isFullScreen);
   }, [isFullScreen]);
 
-  return [isFullScreen, toggleFullScreen];
+  return [isFullScreen, toggleFullScreen] as [boolean , ()=> void];
 };

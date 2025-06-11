@@ -8,7 +8,6 @@
  * @example
  */
 
-import { useState, useEffect, memo } from "react"
 export interface SidebarMenuProps {
   // value: any
 }
