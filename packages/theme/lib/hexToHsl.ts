@@ -1,5 +1,5 @@
 export function hexToHsl(hex: string): Array<number | undefined> {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex) as string[];
 
   var r = parseInt(result[1], 16);
   var g = parseInt(result[2], 16);
@@ -36,9 +36,6 @@ export function hexToHsl(hex: string): Array<number | undefined> {
   l = l * 100;
   l = Math.round(l);
   h = Math.round(360 * h);
-
-  var colorInHSL = "hsl(" + h + ", " + s + "%, " + l + "%)";
-  console.log(colorInHSL);
-
+  
   return [h, s, l];
 }

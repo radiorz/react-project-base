@@ -1,4 +1,4 @@
-export function arrayToObject(array: Array<any>, key: string) {
+export function arrayToObject(array: Array<any>, key?: string) {
   let object: any = {};
   if (key) {
     array.forEach((item, index) => {
