@@ -10,7 +10,10 @@
 
 import { useState, useEffect, memo } from 'react';
 import { TestTree } from "./components/TestTree";
+<<<<<<< HEAD
 // import { Hello } from 'ui-tsup';
+=======
+>>>>>>> dde3efdbe2e694e70d5f2dd23e9aa6af3e3a0311
 export interface AppProps {
   // value: any
 }
