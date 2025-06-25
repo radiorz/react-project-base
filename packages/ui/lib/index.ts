@@ -1,4 +1,3 @@
-// import "overlayscrollbars/overlayscrollbars.css";
 import "./index.css";
 export * from "./action-group";
 export * from "./class-name";

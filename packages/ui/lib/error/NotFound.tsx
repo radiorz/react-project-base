@@ -1,10 +1,10 @@
-import { Button, Result } from "antd";
-import { useNavigate } from "react-router";
+import { Button, Result } from 'antd';
+import { useNavigate } from 'react-router';
 
 export const NotFound = () => {
   const navigate = useNavigate();
   function goBackHome() {
-    navigate("/");
+    navigate('/');
   }
   return (
     <Result

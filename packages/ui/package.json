@@ -1,6 +1,6 @@
 {
   "name": "@tikkhun/react-ui",
-  "version": "0.0.40",
+  "version": "18.0.0",
   "type": "module",
   "main": "dist/react-ui.js",
   "module": "dist/react-ui.umd.cjs",
@@ -33,14 +33,12 @@
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
-    "@tailwindcss/postcss": "^4.1.10",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@tikkhun/react-hooks": "workspace:^",
     "antd": "^5.26.2",
     "clsx": "^2.1.1",
     "lodash-es": "^4.17.21",
     "motion": "^12.19.1",
-    "overlayscrollbars": "^2.11.4",
-    "overlayscrollbars-react": "^0.5.6",
     "pinyin": "4.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
