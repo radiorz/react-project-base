@@ -9,16 +9,15 @@
  */
 
 import { useState, useEffect, memo } from 'react';
-// import { TestTree } from "./components/TestTree";
-import { Hello } from 'ui-tsup';
+import { TestTree } from "./components/TestTree";
 export interface AppProps {
   // value: any
 }
 export const App: React.FC<AppProps> = () => {
   return (
     <div>
-      <Hello></Hello>
-      {/* <TestTree></TestTree> */}
+      {/* <Hello></Hello> */}
+      <TestTree></TestTree>
     </div>
   );
 };
