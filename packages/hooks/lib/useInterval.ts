@@ -14,7 +14,7 @@
 
 import { useCallback, useEffect, useRef } from "react";
 // import { useDispatch } from "react-redux";
-import { isNumber } from "@tikkhun/web-utils";
+import { isNumber } from "@tikkhun/utils-core";
 export interface UseIntervalOptions {
   callback: (...args: any[]) => void;
   interval: number;
@@ -49,7 +49,7 @@ export function useInterval(options: Partial<UseIntervalOptions>) {
       callback();
     }
     // 定时执行
-    intervalIdRef.current = setInterval(() => {
+    intervalIdRef.current = window.setInterval(() => {
       callback();
     }, interval);
 
