@@ -53,21 +53,21 @@
     "react-dom": ">=16.9.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.0",
-    "@commitlint/config-conventional": "^19.8.0",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@umijs/lint": "^4.4.6",
-    "dumi": "^2.4.20",
-    "eslint": "^9.24.0",
-    "father": "^4.5.2",
+    "@umijs/lint": "^4.4.11",
+    "dumi": "^2.4.21",
+    "eslint": "^9.29.0",
+    "father": "^4.5.6",
     "husky": "^9.1.7",
-    "lint-staged": "^15.5.0",
-    "prettier": "^3.5.3",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.0",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "prettier-plugin-packagejson": "^2.5.10",
+    "prettier-plugin-packagejson": "^2.5.15",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "stylelint": "^16.18.0"
+    "stylelint": "^16.21.0"
   }
 }
