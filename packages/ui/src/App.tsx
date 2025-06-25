@@ -33,7 +33,7 @@ function App() {
   // return <SashDemo></SashDemo>;
   // return <TheListDemo></TheListDemo>;
   return <PlusCircleFilled />;
-  return <SashVerticalDemo></SashVerticalDemo>;
+  // return <SashVerticalDemo></SashVerticalDemo>;
   // return (
   //   <ConfigProvider
   //     theme={{
