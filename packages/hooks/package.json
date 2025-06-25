@@ -1,6 +1,6 @@
 {
   "name": "@tikkhun/react-hooks",
-  "version": "0.0.1",
+  "version": "18.0.0",
   "type": "module",
   "main": "dist/react-hooks.js",
   "module": "dist/react-hooks.umd.cjs",
