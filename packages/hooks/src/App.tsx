@@ -11,11 +11,11 @@
  * @done
  * @example
  */
-import React from "react";
-import { TheTime } from "../lib";
+import React from 'react';
 
 function App() {
-  return <TheTime></TheTime>;
+  return <>12312312</>;
+  // return <TheTime></TheTime>;
 }
 
 export default App;
