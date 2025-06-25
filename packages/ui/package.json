@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
-    "@tikkhun/react-hooks": "latest",
+    "@tikkhun/react-hooks": "workspace:*",
     "antd": "^5.26.2",
     "clsx": "^2.1.1",
     "lodash-es": "^4.17.21",

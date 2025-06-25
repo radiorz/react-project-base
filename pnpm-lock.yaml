@@ -458,8 +458,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tikkhun/react-hooks':
-        specifier: latest
-        version: 0.0.1
+        specifier: workspace:*
+        version: link:../hooks
       antd:
         specifier: ^5.26.2
         version: 5.26.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -993,9 +993,6 @@ importers:
       '@ant-design/icons':
         specifier: ^6.0.0
         version: 6.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@tailwindcss/postcss':
-        specifier: ^4.1.10
-        version: 4.1.10
       '@tikkhun/react-hooks':
         specifier: workspace:^
         version: link:../../packages/hooks
