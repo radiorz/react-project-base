@@ -1,13 +1,20 @@
-import { ReloadOutlined } from "@ant-design/icons";
-import { Button, Spin, Tree } from "antd";
-import { Key, memo, ReactNode, useCallback, useRef, useState } from "react";
-import { Action } from "../action-group/action-group.interface";
-import { DebounceInput } from "../input";
-import { useMaxHeight } from "../max-height";
-import { useResizeObserver } from "../resize/useResizeObserver";
-import { TreeNode } from "./tree.interface";
-import { TreeNodeComponent } from "./tree-node";
-import { findExpandedKeysBySearchText } from "./utils";
+import { ReloadOutlined } from '@ant-design/icons';
+import { Button, Tree } from 'antd';
+import {
+  Key,
+  memo,
+  ReactNode,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
+import { Action } from '../action-group/action-group.interface';
+import { DebounceInput } from '../input';
+import { useMaxHeight } from '../max-height';
+import { useResizeObserver } from '../resize/useResizeObserver';
+import { TreeNodeComponent } from './tree-node';
+import { TreeNode } from './tree.interface';
+import { findExpandedKeysBySearchText } from './utils';
 const MemorizedTreeNode = memo(TreeNodeComponent);
 export interface SearchTreeProps {
   selectedKeys?: string[];
@@ -26,27 +33,10 @@ export interface SearchTreeProps {
   footHeight?: number;
   [props: string]: any; // 这里是tree的props
 }
-export function Loading() {
-  return (
-    <div className="flex items-center justify-center w-full h-full max-h-screen max-w-screen">
-      <Spin />
-    </div>
-  );
-}
-export function EmptyTip() {
-  return (
-    <div className="flex items-center justify-center w-full h-full max-h-screen max-w-screen">
-      树为空
-    </div>
-  );
-}
-export function ErrorTip() {
-  return (
-    <div className="flex items-center justify-center w-full h-full max-h-screen max-w-screen">
-      获取错误,请刷新
-    </div>
-  );
-}
+
+import { EmptyHolder } from '../placeholder/EmptyHolder';
+import { ErrorHolder } from '../placeholder/ErrorHolder';
+import { LoadingHolder } from '../placeholder/LoadingHolder';
 export function SearchTree({
   selectedKeys,
   setSelectedKeys,
@@ -67,7 +57,7 @@ export function SearchTree({
   ...props
 }: SearchTreeProps) {
   const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
-  const [searchValue, setSearchValue] = useState<string>("");
+  const [searchValue, setSearchValue] = useState<string>('');
   const [autoExpandParent, setAutoExpandParent] = useState<boolean>(false);
   // 树节点展开渲染的回调
   const onExpand = (newExpandedKeys: Key[]) => {
@@ -87,12 +77,12 @@ export function SearchTree({
       setExpandedKeys(expandedKeys);
       setAutoExpandParent(true);
     },
-    [treeData]
+    [treeData],
   );
   // 处理树节点渲染
   const renderNodeTitle = (item: TreeNode) => {
     // 某些特殊的节点需要设置不同的nodeActions
-    const _nodeActions = nodeActionsByKey?.[item?.key || ""] || nodeActions;
+    const _nodeActions = nodeActionsByKey?.[item?.key || ''] || nodeActions;
     return (
       <MemorizedTreeNode
         nodeActions={_nodeActions}
@@ -110,14 +100,14 @@ export function SearchTree({
   const { height: maxHeight } = useMaxHeight(
     treeContainer,
     footHeight,
-    dimensions
+    dimensions,
   );
   // console.log(`maxHeight`, maxHeight);
   return (
     <div className="@container">
       <div
         className={
-          "flex gap-2 mb-4 flex-wrap @[300px]:!flex-nowrap justify-between @container"
+          'flex gap-2 mb-4 flex-wrap @[300px]:!flex-nowrap justify-between @container'
         }
       >
         <DebounceInput
@@ -135,11 +125,11 @@ export function SearchTree({
         </Button>
       </div>
       {error ? (
-        <ErrorTip></ErrorTip>
+        <ErrorHolder></ErrorHolder>
       ) : loading ? (
-        <Loading></Loading>
+        <LoadingHolder></LoadingHolder>
       ) : !treeData || !treeData?.length ? (
-        <EmptyTip></EmptyTip>
+        <EmptyHolder message="暂无数据"></EmptyHolder>
       ) : (
         <div
           ref={treeContainer}
