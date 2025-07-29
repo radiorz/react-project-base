@@ -31,10 +31,9 @@ export default defineConfig({
           react: "React",
           "react-dom": "ReactDOM",
           antd: "antd",
-          "react-router": "ReactRouter",
         },
       },
-      external: ["react", "react-dom", "antd", "react-router"],
+      external: ["react", "react-dom", "antd"],
     },
   },
   resolve: {

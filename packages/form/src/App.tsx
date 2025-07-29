@@ -2,24 +2,47 @@
  * @author
  * @file App.tsx
  * @fileBase App
- * @path packages\react-form\src\App.tsx
+ * @path packages\react-ui\src\App.tsx
  * @from
  * @desc
+ * @todo
+ *
+ *
+ * @done
  * @example
  */
 
-import { UseStringInputDemo } from "../lib/useStringInput.demo";
-export interface AppProps {
-  // value: any
+import React from 'react';
+// import TestTree from "./TestTree";
+import { useSystemTheme } from '../lib';
+import { SandwichCardDemo } from '../lib/the-card/sandwich-card.demo';
+import SashDemo from '../lib/sash-layout/sash.demo';
+import { SashVerticalDemo } from '../lib/sash-layout/demo/vertical';
+import { StatusDotDemo } from '../lib/status-dot/status-dot.demo';
+import { SearchTreeDemo } from '../lib/search-tree/search-tree.demo';
+import { ConfigProvider, theme } from 'antd';
+import { PlusCircleFilled } from '@ant-design/icons';
+interface AppProps {
+  // value: propTypes.any
 }
-export const App: React.FC<AppProps> = () => {
-  return (
-    <div>
-      123
-      <UseStringInputDemo />
-    </div>
-  );
-};
+function App() {
+  // return <>123123123123</>;
+  // const systemTheme = useSystemTheme();
+  // return <StatusDotDemo></StatusDotDemo>;
+  // return <SandwichCardDemo></SandwichCardDemo>;
+  // return <SashDemo></SashDemo>;
+  // return <TheListDemo></TheListDemo>;
+  return <PlusCircleFilled />;
+  // return <SashVerticalDemo></SashVerticalDemo>;
+  // return (
+  //   <ConfigProvider
+  //     theme={{
+  //       algorithm: systemTheme === 'dark' ? theme.darkAlgorithm : undefined,
+  //     }}
+  //   >
+  //     <SearchTreeDemo />
+  //   </ConfigProvider>
+  // );
+}
 
-// 默认导出
 export default App;
