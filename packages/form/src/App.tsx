@@ -22,17 +22,27 @@ import { StatusDotDemo } from '../lib/status-dot/status-dot.demo';
 import { SearchTreeDemo } from '../lib/search-tree/search-tree.demo';
 import { ConfigProvider, theme } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
+import { ResetPasswordForm } from '../lib';
 interface AppProps {
   // value: propTypes.any
 }
 function App() {
+  return (
+    <ResetPasswordForm
+      onSubmit={(values) => {
+        console.log(values);
+      }}
+    >
+      123123123
+    </ResetPasswordForm>
+  );
   // return <>123123123123</>;
   // const systemTheme = useSystemTheme();
   // return <StatusDotDemo></StatusDotDemo>;
   // return <SandwichCardDemo></SandwichCardDemo>;
   // return <SashDemo></SashDemo>;
   // return <TheListDemo></TheListDemo>;
-  return <PlusCircleFilled />;
+  // return <PlusCircleFilled />;
   // return <SashVerticalDemo></SashVerticalDemo>;
   // return (
   //   <ConfigProvider

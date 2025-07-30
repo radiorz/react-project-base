@@ -1,2 +1,2 @@
 import './index.css';
-export * from './user/reset-password'
+export * from './user';
