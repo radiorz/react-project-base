@@ -22,6 +22,7 @@ import { StatusDotDemo } from '../lib/status-dot/status-dot.demo';
 import { SearchTreeDemo } from '../lib/search-tree/search-tree.demo';
 import { ConfigProvider, theme } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
+import { CircularSelectDemo } from '../lib/circular-scroll/circular-select.demo';
 interface AppProps {
   // value: propTypes.any
 }
@@ -32,8 +33,9 @@ function App() {
   // return <SandwichCardDemo></SandwichCardDemo>;
   // return <SashDemo></SashDemo>;
   // return <TheListDemo></TheListDemo>;
-  return <PlusCircleFilled />;
+  // return <PlusCircleFilled />;
   // return <SashVerticalDemo></SashVerticalDemo>;
+  return <CircularSelectDemo></CircularSelectDemo>;
   // return (
   //   <ConfigProvider
   //     theme={{
